@@ -1,0 +1,17 @@
+[
+ {
+  "location": "/images/*",
+  "tdm-reservation": 1,
+  "tdm-policy": "https://www.miaco.jp/#ai-policy"
+ },
+ {
+  "location": "/*.pdf",
+  "tdm-reservation": 1,
+  "tdm-policy": "https://www.miaco.jp/#ai-policy"
+ },
+ {
+  "location": "/og.jpg",
+  "tdm-reservation": 1,
+  "tdm-policy": "https://www.miaco.jp/#ai-policy"
+ }
+]
