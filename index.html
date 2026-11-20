@@ -633,9 +633,9 @@ h3.sub .hi{flex:none;width:22px;height:22px;padding:0;border-radius:0;background
 /* ABOUT：写真＋文のかたまりを中央に（文章は読みやすいよう左そろえのまま） */
 #about .prof{width:fit-content;max-width:min(100%,860px);margin-inline:auto}
 #about .prof p{max-width:none}
-/* スマホ：グロナビはハンバーガーメニューに */
+/* スマホ・タブレット：グロナビはハンバーガーメニューに */
 .menu-btn{display:none}
-@media (max-width:560px){
+@media (max-width:900px){
   [data-theme="e"] .top .wrap{height:60px;grid-template-columns:1fr auto 1fr;padding-block:0;row-gap:0}
   [data-theme="e"] .badge{grid-column:2;grid-row:1}
   .menu-btn{display:grid;grid-column:3;grid-row:1;justify-self:end;align-content:center;gap:5px;width:44px;height:44px;padding:0 10px;margin-right:-6px;border:0;background:none;cursor:pointer;color:var(--navy)}
@@ -709,6 +709,51 @@ main>section+section,#award,#contact,#news,#about{border-top:0}
 /* WORKSの上の余白を20px足す（52px→72px） */
 main>section#works{padding-top:72px}
 .sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* スマホ・タブレット：吹き出しを中央のアイコンの真下に（右寄せをやめる） */
+@media (max-width:900px){
+  .bubble{left:50%;right:auto;transform:translate(-50%,-6px);white-space:normal;width:max-content;max-width:calc(100vw - 32px);text-align:center}
+  .bubble.show{transform:translate(-50%,0)}
+  .bubble::before{left:50%;right:auto;margin-left:-7px}
+  .bubble::after{left:50%;right:auto;margin-left:-4px}
+}
+/* スマホ・タブレット：「お仕事のご相談はこちら ↓」を中央に */
+@media (max-width:900px){.fv-card .fv-cta{text-align:center;margin-top:16px}}
+/* タブレット（2列のとき）：「お仕事のご相談はこちら ↓」をカード全体の中央に */
+@media (min-width:561px) and (max-width:900px){[data-theme="e"] .fv-card{padding-bottom:66px}[data-theme="e"] .fv-card .fv-cta{position:absolute;left:0;right:0;bottom:24px;margin:0;text-align:center}}
+/* ROOTOTE：スマホ・タブレットでは枠はそのまま、バッグ全体が収まるように */
+@media (max-width:820px){#works .hl>.hl-card#rootote .im{background:#fff}#works .hl>.hl-card#rootote .im img{object-fit:contain;object-position:50% 50%;padding:8px 0}}
+/* MV：左右の余白にうさぎと鳥（PCで余白があるときだけ。飾りなので読み上げない） */
+.fv-space .mv-char{display:none;position:absolute;z-index:1;height:auto;pointer-events:none;animation:mvfloat 5s ease-in-out infinite}
+.fv-space .mv-wakusei{left:calc((100% - 720px)/4);top:5%;width:clamp(90px,calc((100vw - 720px)/2 - 150px),140px);transform:translateX(-50%) rotate(-10deg);--r:-10deg;animation-duration:6.5s;animation-delay:-2s}
+.fv-space .mv-usa{left:calc((100% - 720px)/4);top:33%;width:clamp(120px,calc((100vw - 720px)/2 - 100px),180px);transform:translateX(-50%) rotate(-6deg);--r:-6deg}
+.fv-space .mv-saru{right:calc((100% - 720px)/4);top:-2%;width:clamp(64px,calc((100vw - 720px)/2 - 200px),88px);transform:translateX(50%);transform-origin:50% 0;animation:mvswing 4.6s ease-in-out infinite}
+.fv-space .mv-tori{right:calc((100% - 720px)/4);top:54%;width:clamp(100px,calc((100vw - 720px)/2 - 130px),140px);transform:translateX(50%) rotate(4deg);--r:4deg;--tx:50%;animation-duration:4.2s;animation-delay:-1.5s}
+@keyframes mvswing{0%,100%{rotate:-4deg}50%{rotate:4deg}}
+@keyframes mvfloat{0%,100%{translate:0 0}50%{translate:0 -12px}}
+@media (min-width:1100px){.fv-space .mv-char{display:block}}
+@media (prefers-reduced-motion:reduce){.fv-space .mv-char{animation:none}}
+/* 鳥：プロフカードの右上の角にとまらせる（文字にかからないようカードの外側、サイズは前の半分） */
+.fv-card .fv-bird{position:absolute;z-index:2;right:30px;top:-62px;width:70px;height:auto;pointer-events:none;rotate:4deg;animation:mvfloat 4.2s ease-in-out infinite}
+@media (max-width:560px){.fv-card .fv-bird{width:56px;top:-50px;right:22px}}
+@media (prefers-reduced-motion:reduce){.fv-card .fv-bird{animation:none}}
+/* 惑星：サイズを半分にして、動きはなし */
+.fv-space .mv-wakusei{width:clamp(45px,calc(((100vw - 720px)/2 - 150px)/2),70px);animation:none;top:10%;transform:translateX(180%) rotate(-30deg)}
+/* 鳥：プロフカードの右下の角に（動きなし） */
+.fv-card .fv-bird{top:auto;right:-23px;bottom:-11px;animation:none;width:81px}
+@media (max-width:560px){.fv-card .fv-bird{top:auto;right:-15px;bottom:-7px;width:64px}}
+/* うさぎ：サイズをそれまでの80%に */
+.fv-space .mv-usa{width:clamp(96px,calc(((100vw - 720px)/2 - 100px)*.8),144px);left:calc((100% - 720px)/4 + 100px)}
+/* サル：20px左へ */
+.fv-space .mv-saru{right:calc((100% - 720px)/4 + 90px)}
+/* PC：うさぎとサルはブラウザの幅で縮めず、固定の大きさ */
+.fv-space .mv-usa{width:144px}
+.fv-space .mv-saru{width:88px}
+/* サルとうさぎ：動きを控えめに（揺れ幅を半分、ゆっくり） */
+@keyframes mvswing-s{0%,100%{rotate:-2deg}50%{rotate:2deg}}
+@keyframes mvfloat-s{0%,100%{translate:0 0}50%{translate:0 -5px}}
+.fv-space .mv-saru{animation:mvswing-s 6s ease-in-out infinite}
+.fv-space .mv-usa{animation:mvfloat-s 6.5s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.fv-space .mv-saru,.fv-space .mv-usa{animation:none}}
 </style>
 <script type="application/ld+json">{
  "@context": "https://schema.org",
@@ -847,7 +892,7 @@ main>section#works{padding-top:72px}
       },
       "url": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/",
       "abstract": "本を読む赤い髪の女性のまわりに、本やノート、植物が広がる、オレンジと水色のイラスト。",
-      "description": "Webメディア「こここ」エッセイ連載「あらゆるものが、はやすぎる」／メインビジュアル"
+      "description": "Webメディア「こここ」連載／メインビジュアル"
      }
     },
     {
@@ -923,7 +968,7 @@ main>section#works{padding-top:72px}
       },
       "url": "https://co-coco.jp/series/study/saferspacetolearn/",
       "abstract": "水色の模様に囲まれた白い雲の中で、青い髪の人物が本を読み、オレンジの蝶が舞う。",
-      "description": "学びとは冒険である。多少の危険のなかで見つけるものが宝物だったり。そんなテーマで書きました／Webメディア「こここ」連載「こここスタディ」／メインビジュアル"
+      "description": "学びとは冒険である。多少の危険のなかで見つけるものが宝物だったり。そんなテーマで書きました／Webメディア「こここ」連載／メインビジュアル"
      }
     },
     {
@@ -949,7 +994,7 @@ main>section#works{padding-top:72px}
       },
       "url": "https://co-coco.jp/series/study/saferspacetolearn02/",
       "abstract": "サーモンピンクの地に、白い雲の中で本や地図を広げる人物たちを描く。",
-      "description": "学びとは冒険である。そして仲間が増えていきます。そんなテーマです。／Webメディア「こここ」連載「こここスタディ」／メインビジュアル"
+      "description": "学びとは冒険である。そして仲間が増えていきます。そんなテーマです。／Webメディア「こここ」連載／メインビジュアル"
      }
     },
     {
@@ -975,7 +1020,7 @@ main>section#works{padding-top:72px}
       },
       "url": "https://co-coco.jp/series/nursing/care2/",
       "abstract": "本棚のある部屋で、大人と子どもが手を伸ばし合う。赤と黄色を中心にした温かい色合い。",
-      "description": "暮らしはらせん状につながりながら変化していくものです。／Webメディア「こここ」連載「“自分らしく生きる”を支えるしごと」（厚生労働省補助事業）／メインビジュアル"
+      "description": "暮らしはらせん状につながりながら変化していくものです。／Webメディア「こここ」連載／メインビジュアル"
      }
     },
     {
@@ -1001,7 +1046,7 @@ main>section#works{padding-top:72px}
       },
       "url": "https://co-coco.jp/series/nursing/care_comic2/",
       "abstract": "黄色い枠のマンガのコマが壁のように並ぶ中、眼鏡の人物が、コマの中の白いおばけのようなキャラクターと見つめ合う絵。",
-      "description": "2025年には、下北沢のBONUS TRACKで開かれたイベント「ケアリングノーベンバー2025」で、本屋B&Bのブックフェア「ケアを感じたマンガ」の看板になりました。／Webメディア「こここ」連載「“自分らしく生きる”を支えるしごと」／イラスト"
+      "description": "2025年には、下北沢のBONUS TRACKで開かれたイベント「ケアリングノーベンバー2025」で、本屋B&Bのブックフェア「ケアを感じたマンガ」の看板になりました。／Webメディア「こここ」連載／イラスト"
      }
     },
     {
@@ -1077,12 +1122,33 @@ main>section#works{padding-top:72px}
       },
       "url": "https://co-coco.jp/series/nursing/nursing_book/",
       "abstract": "開いた本を持つたくさんの手が、中央の人物を囲む。サーモンピンクと緑の配色。",
-      "description": "開いた本の中にある物語。それぞれの人生。／Webメディア「こここ」連載「“自分らしく生きる”を支えるしごと」／イラスト"
+      "description": "開いた本の中にある物語。それぞれの人生。／Webメディア「こここ」連載／イラスト"
      }
     },
     {
      "@type": "ListItem",
      "position": 11,
+     "item": {
+      "@type": "VisualArtwork",
+      "name": "宇宙TVステーション",
+      "image": "https://www.miaco.jp/images/uchu-tv-1.webp",
+      "dateCreated": "2026",
+      "creator": {
+       "@id": "https://www.miaco.jp/#person"
+      },
+      "artform": "イラストレーション",
+      "genre": "オリジナル",
+      "copyrightHolder": {
+       "@id": "https://www.miaco.jp/#person"
+      },
+      "usageInfo": "https://www.miaco.jp/#ai-policy",
+      "abstract": "黄色の地に、地球を中心に、マイクを持ったウサギ耳のキャラクターやカメラを構えたウサギ、怪獣やロケットが渦のように飛び交う、ニュースをモチーフにした絵。",
+      "description": "ポートフォリオのために描き下ろしたイラスト。宇宙のTVステーションのスタッフの物語です。"
+     }
+    },
+    {
+     "@type": "ListItem",
+     "position": 12,
      "item": {
       "@type": "VisualArtwork",
       "name": "THANK YOU MARKET 2026",
@@ -1102,12 +1168,12 @@ main>section#works{padding-top:72px}
        "name": "株式会社ロフト（銀座ロフト）"
       },
       "abstract": "赤い枠の中で、プレゼントを持った人々が手を振る、にぎやかな告知イラスト。",
-      "description": "THANK YOU MARKET 2026／SNSの告知イラスト（自主制作）"
+      "description": "THANK YOU MARKET 2026／Web告知イラスト（自主制作）"
      }
     },
     {
      "@type": "ListItem",
-     "position": 12,
+     "position": 13,
      "item": {
       "@type": "VisualArtwork",
       "name": "ラブ＆ガチャ",
@@ -1127,16 +1193,16 @@ main>section#works{padding-top:72px}
        "name": "LINK LINK POSTERS 2026（デザイナー松村大輔氏とのコラボ）"
       },
       "abstract": "ティールとピンクの背景に、頭がカプセルのように開き、中から宇宙のようなガチャの中身があふれ出す人物を描いたSFポスター。",
-      "description": "『ラブ＆ガチャ』——令和100年、課金省という架空の省庁が仕掛けた「確定された愛」というSF広報ポスターです。／ポスター"
+      "description": "『ラブ＆ガチャ』——令和100年、課金省という架空の省庁が仕掛けた「確定された愛」というSF広報ポスターです。／ポスター（B1サイズ）"
      }
     },
     {
      "@type": "ListItem",
-     "position": 13,
+     "position": 14,
      "item": {
       "@type": "VisualArtwork",
       "name": "ガチャベイビー",
-      "image": "https://www.miaco.jp/images/gacha-baby-1.webp",
+      "image": "https://www.miaco.jp/images/gacha-baby-3.webp",
       "dateCreated": "2026",
       "creator": {
        "@id": "https://www.miaco.jp/#person"
@@ -1153,7 +1219,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 14,
+     "position": 15,
      "item": {
       "@type": "VisualArtwork",
       "name": "選挙行こうよ！ポスター",
@@ -1174,7 +1240,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 15,
+     "position": 16,
      "item": {
       "@type": "VisualArtwork",
       "name": "友達に投票先を聞いた日",
@@ -1195,7 +1261,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 16,
+     "position": 17,
      "item": {
       "@type": "VisualArtwork",
       "name": "I♡WBC",
@@ -1216,7 +1282,28 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 17,
+     "position": 18,
+     "item": {
+      "@type": "VisualArtwork",
+      "name": "流出",
+      "image": "https://www.miaco.jp/images/ryushutsu.webp",
+      "dateCreated": "2026",
+      "creator": {
+       "@id": "https://www.miaco.jp/#person"
+      },
+      "artform": "イラストレーション",
+      "genre": "オリジナル",
+      "copyrightHolder": {
+       "@id": "https://www.miaco.jp/#person"
+      },
+      "usageInfo": "https://www.miaco.jp/#ai-policy",
+      "abstract": "緑の地に、パターンロックのスマートフォンの画面から、ピンクの人物が白い髪の人物の顔を両手で包みこむように抱き寄せる絵。右上に縦書きで「流出」の文字と詩。",
+      "description": "隠したつもりのこの暗号（きもち）　鍵をかけても意味ないね　中身は君のことばかりなのに／デジタル（時事）"
+     }
+    },
+    {
+     "@type": "ListItem",
+     "position": 19,
      "item": {
       "@type": "VisualArtwork",
       "name": "いかないで",
@@ -1237,7 +1324,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 18,
+     "position": 20,
      "item": {
       "@type": "VisualArtwork",
       "name": "のびのびパジャマ",
@@ -1258,7 +1345,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 19,
+     "position": 21,
      "item": {
       "@type": "VisualArtwork",
       "name": "フィルター",
@@ -1274,12 +1361,12 @@ main>section#works{padding-top:72px}
       },
       "usageInfo": "https://www.miaco.jp/#ai-policy",
       "abstract": "緑の地に、黒いスーツの男性とピンクの肌の女性が向き合う切り貼りの絵。余白に縦書きの文章。",
-      "description": "「綺麗じゃない空気の方が生きやしやすい日は　君の正しい呼吸を少しだけ焦がしてみたい。」実際に絵の一部を燃やしています。／アナログ（切り貼り）"
+      "description": "「綺麗じゃない空気の方が生きやすい日は　君の正しい呼吸を少しだけ焦がしてみたい。」実際に絵の一部を燃やしています。／アナログ（切り貼り）"
      }
     },
     {
      "@type": "ListItem",
-     "position": 20,
+     "position": 22,
      "item": {
       "@type": "VisualArtwork",
       "name": "ピックアップ",
@@ -1300,7 +1387,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 21,
+     "position": 23,
      "item": {
       "@type": "VisualArtwork",
       "name": "あたしはピアスをあけてない",
@@ -1321,7 +1408,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 22,
+     "position": 24,
      "item": {
       "@type": "VisualArtwork",
       "name": "PRINT",
@@ -1342,7 +1429,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 23,
+     "position": 25,
      "item": {
       "@type": "VisualArtwork",
       "name": "たまりば・リメンバー",
@@ -1363,7 +1450,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 24,
+     "position": 26,
      "item": {
       "@type": "VisualArtwork",
       "name": "ゴキゲンなゴゴ",
@@ -1384,7 +1471,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 25,
+     "position": 27,
      "item": {
       "@type": "VisualArtwork",
       "name": "THE DAILY ROOM",
@@ -1405,7 +1492,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 26,
+     "position": 28,
      "item": {
       "@type": "VisualArtwork",
       "name": "イマサマジャンケン",
@@ -1426,7 +1513,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 27,
+     "position": 29,
      "item": {
       "@type": "VisualArtwork",
       "name": "HEY ! SAY！",
@@ -1447,7 +1534,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 28,
+     "position": 30,
      "item": {
       "@type": "VisualArtwork",
       "name": "カモメとオンナ",
@@ -1468,7 +1555,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 29,
+     "position": 31,
      "item": {
       "@type": "VisualArtwork",
       "name": "ミチタリタイム",
@@ -1489,7 +1576,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 30,
+     "position": 32,
      "item": {
       "@type": "VisualArtwork",
       "name": "ガサゴソホテル",
@@ -1510,7 +1597,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 31,
+     "position": 33,
      "item": {
       "@type": "VisualArtwork",
       "name": "GAME OVER?",
@@ -1531,7 +1618,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 32,
+     "position": 34,
      "item": {
       "@type": "VisualArtwork",
       "name": "トラブルなトラベル",
@@ -1552,7 +1639,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 33,
+     "position": 35,
      "item": {
       "@type": "VisualArtwork",
       "name": "いっぱいほしい！",
@@ -1573,7 +1660,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 34,
+     "position": 36,
      "item": {
       "@type": "VisualArtwork",
       "name": "もっともっと！",
@@ -1594,7 +1681,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 35,
+     "position": 37,
      "item": {
       "@type": "VisualArtwork",
       "name": "ソウゾウのパレス",
@@ -1615,7 +1702,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 36,
+     "position": 38,
      "item": {
       "@type": "VisualArtwork",
       "name": "パイロットフィッシュ",
@@ -1636,7 +1723,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 37,
+     "position": 39,
      "item": {
       "@type": "VisualArtwork",
       "name": "フーテン",
@@ -1657,7 +1744,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 38,
+     "position": 40,
      "item": {
       "@type": "VisualArtwork",
       "name": "一緒にスモウ",
@@ -1678,7 +1765,7 @@ main>section#works{padding-top:72px}
     },
     {
      "@type": "ListItem",
-     "position": 39,
+     "position": 41,
      "item": {
       "@type": "VisualArtwork",
       "name": "＃好きな映画",
@@ -1884,16 +1971,17 @@ main>section#works{padding-top:72px}
 <header class="top"><div class="wrap">
 <a class="logo" href="#top" aria-label="イラストレーター ミアコ（MIACO）トップへ"><img src="images/miaco.png" alt="MIACO" width="300" height="69"><span class="who">ILLUSTRATOR</span></a>
 <button class="badge" type="button" aria-label="ミアコのアイコン（押すとひとこと話します）"><img src="images/t/miaco-portrait.webp" alt=""></button>
-<div class="navs" id="gnav"><nav aria-label="ページ内"><a href="#works">WORKS</a><a href="#about">ABOUT</a><a href="#news">NEWS</a><a href="#contact">CONTACT</a></nav>
+<div class="navs" id="gnav"><nav aria-label="ページ内"><a href="#works">WORKS</a><a href="#about">ABOUT</a><a href="#contact">CONTACT</a><a href="#news">NEWS</a></nav>
 <div class="sns"><a href="https://www.instagram.com/miaco_oh/" rel="me noopener" aria-label="Instagram @miaco_oh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://x.com/miaco_oh" rel="me noopener" aria-label="X @miaco_oh"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg></a></div></div>
 <button class="menu-btn" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="gnav"><span></span><span></span><span></span></button>
 </div></header>
 
 <main id="top">
 <section class="fv" aria-label="イラストレーター ミアコについて">
-<div class="fv-hero"><div class="fv-space" aria-hidden="true"><span class="orbit o1"></span><span class="orbit o2"></span><i style="left:6%;top:16%;--s:24px;--d:0s"></i><i style="left:14%;top:62%;--s:14px;--c:var(--magenta);--d:.8s"></i><i style="left:22%;top:30%;--s:10px;--c:var(--navy);--d:1.6s"></i><i style="left:27%;top:82%;--s:20px;--d:2.2s"></i><i style="left:35%;top:10%;--s:12px;--c:var(--teal);--d:.4s"></i><i style="left:63%;top:8%;--s:16px;--d:1.2s"></i><i style="left:70%;top:72%;--s:12px;--c:var(--navy);--d:2.6s"></i><i style="left:77%;top:26%;--s:22px;--c:var(--magenta);--d:.6s"></i><i style="left:86%;top:54%;--s:14px;--d:1.9s"></i><i style="left:92%;top:14%;--s:10px;--c:var(--teal);--d:2.9s"></i><i style="left:90%;top:84%;--s:18px;--d:1s"></i><i style="left:4%;top:44%;--s:12px;--c:var(--navy);--d:2.4s"></i></div><img src="images/fv-top.webp" alt="ミアコのイラスト（ニュースを運ぶキャラクターたちと地球）" fetchpriority="high" width="1400" height="1383"></div>
+<div class="fv-hero"><div class="fv-space" aria-hidden="true"><img class="mv-char mv-wakusei" src="images/mv-wakusei.webp" alt="" width="360" height="226" loading="eager" decoding="async"><img class="mv-char mv-saru" src="images/mv-saru.webp" alt="" width="217" height="700" loading="eager" decoding="async"><img class="mv-char mv-usa" src="images/mv-usa.webp" alt="" width="388" height="480" loading="eager" decoding="async"><span class="orbit o1"></span><span class="orbit o2"></span><i style="left:6%;top:16%;--s:24px;--d:0s"></i><i style="left:14%;top:62%;--s:14px;--c:var(--magenta);--d:.8s"></i><i style="left:22%;top:30%;--s:10px;--c:var(--navy);--d:1.6s"></i><i style="left:27%;top:82%;--s:20px;--d:2.2s"></i><i style="left:35%;top:10%;--s:12px;--c:var(--teal);--d:.4s"></i><i style="left:63%;top:8%;--s:16px;--d:1.2s"></i><i style="left:70%;top:72%;--s:12px;--c:var(--navy);--d:2.6s"></i><i style="left:77%;top:26%;--s:22px;--c:var(--magenta);--d:.6s"></i><i style="left:86%;top:54%;--s:14px;--d:1.9s"></i><i style="left:92%;top:14%;--s:10px;--c:var(--teal);--d:2.9s"></i><i style="left:90%;top:84%;--s:18px;--d:1s"></i><i style="left:4%;top:44%;--s:12px;--c:var(--navy);--d:2.4s"></i></div><img src="images/fv-top.webp" alt="ミアコのイラスト（ニュースを運ぶキャラクターたちと地球）" fetchpriority="high" width="1400" height="1383"></div>
 <div class="wrap fv-in">
 <div class="fv-card">
+<img class="fv-bird" src="images/mv-tori-2.webp" alt="" aria-hidden="true" width="400" height="376" decoding="async">
 <div class="fv-l">
 <p class="eyebrow">イラストレーター</p>
 <div class="fv-who">
@@ -1913,51 +2001,55 @@ main>section#works{padding-top:72px}
 <div class="h"><h2>WORKS</h2><span>作品</span></div>
 <p class="eyebrow small">WORK PICKUP</p>
 <div class="hl"><a class="hl-card" id="tokyodome" href="images/hl-tokyodome-signage-2.webp" data-hl="tokyodome">
-<span class="im"><img src="images/t/hl-tokyodome-signage-2.webp" alt="東京ドームシティ「春やすみ2026」" loading="eager"></span>
+<span class="im"><img src="images/hl-tokyodome-signage-2.webp" alt="東京ドームシティ「春やすみ2026」" loading="eager"></span>
 <span class="tx"><span class="t">東京ドームシティ「春やすみ2026」</span><span class="c">株式会社東京ドーム（東京ドームシティ）</span><span class="d">東京ドームシティ全体のイベントビジュアル。メインビジュアルとタイトルロゴを描き、園内の大型サイネージ、WEB広告、SNSで展開。</span><ul class="uses-tag"><li>メインビジュアル</li><li>タイトルロゴ</li><li>大型サイネージ</li><li>WEB広告</li><li>SNS</li></ul><span class="sr">春休みに合わせたイベント。親子も友達もたくさんの愛でドームを包みました。／写真：メインビジュアル／メインビジュアル（縦版）／東京ドーム前の大型サイネージ／東京ドームシティのサイネージ／東京ドームシティのサイネージ／東京ドームシティのサイネージ／東京ドームシティのサイネージ／東京ドームシティ応援漫画（告知の時に自主制作で描いた1P漫画）</span><span class="more">写真を見る（8枚）</span></span></a><a class="hl-card" id="loft" href="images/hl-loft-signage.webp" data-hl="loft">
 <span class="im"><img src="images/t/hl-loft-signage.webp" alt="GINZA LOFT × MIACO（2025・2026）" loading="eager"></span>
 <span class="tx"><span class="t">GINZA LOFT × MIACO（2025・2026）</span><span class="c">株式会社ロフト（銀座ロフト）</span><span class="d">銀座ロフト店内の専用スペースで、オリジナルグッズの販売と「10分人物画」イベントを開催。告知ビジュアルはSNS展開と店内サイネージになりました。10分人物画は2年連続で全枠完売。</span><ul class="uses-tag"><li>告知ビジュアル</li><li>店内サイネージ</li><li>オリジナルグッズ</li><li>ライブペイント</li></ul><span class="sr">「GINZA LOFT」のバレンタインに合わせたセンキューマーケットにあわせたイベント告知絵です。／写真：告知ビジュアル／「10分人物画」告知ビジュアル／店内の告知サイネージ／「10分人物画」を描いている様子／オリジナルグッズの販売コーナー／「10分人物画」で描いた絵とお客様／「10分人物画」で描いた絵とお客様／「10分人物画」で描いたファッション画</span><span class="more">写真を見る（8枚）</span></span></a><a class="hl-card" id="rootote" href="images/hl-rootote-tote.webp" data-hl="rootote">
 <span class="im"><img src="images/t/hl-rootote-tote.webp" alt="イラストレーション“ザ・チョイス”× ROOTOTE" loading="eager"></span>
-<span class="tx"><span class="t">イラストレーション“ザ・チョイス”× ROOTOTE</span><span class="c">ROOTOTE</span><span class="d">ザ・チョイスの入選作が、ROOTOTEとのコラボ企画でトートバッグになりました。</span><ul class="uses-tag"><li>トートバッグ</li><li>商品化</li></ul><span class="sr">写真：入選作のトートバッグ（ROOTOTE）／ROOTOTE GALLERYでのトートバッグの展示／ROOTOTE GALLERYの店内／ROOTOTE GALLERY／トートバッグを持った女の子のイラスト</span><span class="more">写真を見る（5枚）</span></span></a></div>
+<span class="tx"><span class="t">イラストレーション“ザ・チョイス”× ROOTOTE</span><span class="c">ROOTOTE</span><span class="d">ザ・チョイスの入選作が、ROOTOTEとのコラボ企画でトートバッグになりました。</span><ul class="uses-tag"><li>トートバッグ</li><li>商品化</li></ul><span class="sr">写真：入選作のトートバッグ（ROOTOTE）／ROOTOTE GALLERY 二子玉川ライズでの販売時の様子／ROOTOTE GALLERYの店内／ROOTOTE GALLERY／トートバッグを持った女の子のイラスト</span><span class="more">写真を見る（5枚）</span></span></a></div>
 <div id="grid"><h3 class="eyebrow small tiles-h">CLIENT WORK ／ お仕事</h3><div class="wcards"><figure class="wcard" id="w-kokoko-yuiyuda" data-k="work">
 <a class="thumb" href="images/c-magazin.webp" data-i="22"><img style="object-position:50% 40%" src="images/t/c-magazin.webp" alt="急がなければ、生きられないけど 〜効率主義と「余白」のあいだで〜｜油田優衣（株式会社マガジンハウス）。本を読む赤い髪の女性のまわりに、本やノート、植物が広がる、オレンジと水色のイラスト。" width="1393" height="896" loading="eager" decoding="async"></a>
-<figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">急がなければ、生きられないけど 〜効率主義と「余白」のあいだで〜｜油田優衣</span><span class="c">株式会社マガジンハウス</span><span class="d">Webメディア「こここ」のエッセイ連載「あらゆるものが、はやすぎる」の記事。</span><ul class="uses-tag"><li>メインビジュアル</li><li>WEB記事</li></ul><span class="m">2026<a class="src" href="https://co-coco.jp/series/hayasugiruyo/yuiyuda/" rel="noopener">掲載ページ ↗</a></span><span class="sr">媒体：Webメディア「こここ」エッセイ連載「あらゆるものが、はやすぎる」／内容：メインビジュアル</span></figcaption></figure><figure class="wcard" id="w-feerique-gateau-book" data-k="work">
+<figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">急がなければ、生きられないけど 〜効率主義と「余白」のあいだで〜｜油田優衣</span><span class="c">株式会社マガジンハウス</span><span class="d">Webメディア「こここ」のエッセイ連載「あらゆるものが、はやすぎる」の記事。</span><ul class="uses-tag"><li>メインビジュアル</li><li>WEB記事</li></ul><span class="m">2026<a class="src" href="https://co-coco.jp/series/hayasugiruyo/yuiyuda/" rel="noopener">掲載ページ ↗</a></span><span class="sr">媒体：Webメディア「こここ」連載／内容：メインビジュアル</span></figcaption></figure><figure class="wcard" id="w-feerique-gateau-book" data-k="work">
 <a class="thumb" href="images/feerique-gateau-book-2.webp" data-i="0"><img style="object-position:50% 40%" src="images/t/feerique-gateau-book-2.webp" alt="コンセプトBOOK『妖精のお菓子屋さん フェアリックガトーの小さな物語』（フェアリックガトー（feerique gateau））。時計の描かれた表紙と、時計やティーポット、色とりどりのお菓子と花が輪のように縁取る見開きのページ。" width="1600" height="1009" loading="eager" decoding="async"></a>
 <figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">コンセプトBOOK『妖精のお菓子屋さん フェアリックガトーの小さな物語』</span><span class="c">フェアリックガトー（feerique gateau）</span><span class="d">時計ブランドフェアリックガトーの、妖精の物語</span><ul class="uses-tag"><li>デザイン</li><li>編集</li><li>冊子</li></ul><span class="m">2026</span><span class="sr">媒体：コンセプトBOOK（ZINE・全8P）／内容：イラスト・デザイン・編集（ストーリー以外）</span></figcaption></figure><figure class="wcard" id="w-sharp-aquos" data-k="work">
 <a class="thumb" href="images/sharp-aquos-2.webp" data-i="2"><img style="object-position:50% 40%" src="images/t/sharp-aquos-2.webp" alt="スマートフォン「AQUOS」クリエイター壁紙（シャープ株式会社）。青い背景に、スマートフォンの画面の中でピンクの人物たちが黄色と水色の模様と重なる壁紙イラスト。「SHARP my AQUOS」「MIACO」の文字。" width="1280" height="1600" loading="eager" decoding="async"></a>
 <figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">スマートフォン「AQUOS」クリエイター壁紙</span><span class="c">シャープ株式会社</span><span class="d">ミアコのイラストがSHARP製スマートフォン向け公式アプリ「My AQUOS」で「クリエイター壁紙」になりました。日本およびアジア圏のユーザに向けて、日本のクリエイターとして配信されました。</span><ul class="uses-tag"><li>壁紙イラスト</li><li>日本・アジア圏に配信</li></ul><span class="m">2026</span><span class="sr">媒体：公式アプリ「My AQUOS」クリエイター壁紙／内容：壁紙イラスト</span></figcaption></figure><figure class="wcard" id="w-kokoko-manabi-1" data-k="work">
 <a class="thumb" href="images/kokoko-manabi-1.webp" data-i="3"><img style="object-position:50% 40%" src="images/t/kokoko-manabi-1.webp" alt="「学びの場」をテーマにした連載記事メインビジュアル（前編）（株式会社マガジンハウス）。水色の模様に囲まれた白い雲の中で、青い髪の人物が本を読み、オレンジの蝶が舞う。" width="1330" height="850" loading="eager" decoding="async"></a>
-<figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">「学びの場」をテーマにした連載記事メインビジュアル（前編）</span><span class="c">株式会社マガジンハウス</span><span class="d">学びとは冒険である。多少の危険のなかで見つけるものが宝物だったり。そんなテーマで書きました</span><ul class="uses-tag"><li>メインビジュアル</li><li>WEB記事</li></ul><span class="m">2026<a class="src" href="https://co-coco.jp/series/study/saferspacetolearn/" rel="noopener">掲載ページ ↗</a></span><span class="sr">媒体：Webメディア「こここ」連載「こここスタディ」／内容：メインビジュアル</span></figcaption></figure><figure class="wcard" id="w-kokoko-manabi-2" data-k="work">
+<figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">「学びの場」をテーマにした連載記事メインビジュアル（前編）</span><span class="c">株式会社マガジンハウス</span><span class="d">学びとは冒険である。多少の危険のなかで見つけるものが宝物だったり。そんなテーマで書きました</span><ul class="uses-tag"><li>メインビジュアル</li><li>WEB記事</li></ul><span class="m">2026<a class="src" href="https://co-coco.jp/series/study/saferspacetolearn/" rel="noopener">掲載ページ ↗</a></span><span class="sr">媒体：Webメディア「こここ」連載／内容：メインビジュアル</span></figcaption></figure><figure class="wcard" id="w-kokoko-manabi-2" data-k="work">
 <a class="thumb" href="images/kokoko-manabi-2.webp" data-i="4"><img style="object-position:50% 40%" src="images/t/kokoko-manabi-2.webp" alt="「学びの場」をテーマにした連載記事メインビジュアル（後編）（株式会社マガジンハウス）。サーモンピンクの地に、白い雲の中で本や地図を広げる人物たちを描く。" width="1330" height="850" loading="lazy" decoding="async"></a>
-<figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">「学びの場」をテーマにした連載記事メインビジュアル（後編）</span><span class="c">株式会社マガジンハウス</span><span class="d">学びとは冒険である。そして仲間が増えていきます。そんなテーマです。</span><ul class="uses-tag"><li>メインビジュアル</li><li>WEB記事</li></ul><span class="m">2026<a class="src" href="https://co-coco.jp/series/study/saferspacetolearn02/" rel="noopener">掲載ページ ↗</a></span><span class="sr">媒体：Webメディア「こここ」連載「こここスタディ」／内容：メインビジュアル</span></figcaption></figure><figure class="wcard" id="w-kokoko-care" data-k="work">
+<figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">「学びの場」をテーマにした連載記事メインビジュアル（後編）</span><span class="c">株式会社マガジンハウス</span><span class="d">学びとは冒険である。そして仲間が増えていきます。そんなテーマです。</span><ul class="uses-tag"><li>メインビジュアル</li><li>WEB記事</li></ul><span class="m">2026<a class="src" href="https://co-coco.jp/series/study/saferspacetolearn02/" rel="noopener">掲載ページ ↗</a></span><span class="sr">媒体：Webメディア「こここ」連載／内容：メインビジュアル</span></figcaption></figure><figure class="wcard" id="w-kokoko-care" data-k="work">
 <a class="thumb" href="images/kokoko-care.webp" data-i="5"><img style="object-position:50% 40%" src="images/t/kokoko-care.webp" alt="「暮らしの中のケア」をテーマにした企画メインビジュアル（株式会社マガジンハウス）。本棚のある部屋で、大人と子どもが手を伸ばし合う。赤と黄色を中心にした温かい色合い。" width="1335" height="850" loading="eager" decoding="async"></a>
-<figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">「暮らしの中のケア」をテーマにした企画メインビジュアル</span><span class="c">株式会社マガジンハウス</span><span class="d">暮らしはらせん状につながりながら変化していくものです。</span><ul class="uses-tag"><li>メインビジュアル</li><li>WEB記事</li></ul><span class="m">2025<a class="src" href="https://co-coco.jp/series/nursing/care2/" rel="noopener">掲載ページ ↗</a></span><span class="sr">媒体：Webメディア「こここ」連載「“自分らしく生きる”を支えるしごと」（厚生労働省補助事業）／内容：メインビジュアル</span></figcaption></figure><figure class="wcard" id="w-kokoko-care-comic" data-k="work">
+<figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">「暮らしの中のケア」をテーマにした企画メインビジュアル</span><span class="c">株式会社マガジンハウス</span><span class="d">暮らしはらせん状につながりながら変化していくものです。</span><ul class="uses-tag"><li>メインビジュアル</li><li>WEB記事</li></ul><span class="m">2025<a class="src" href="https://co-coco.jp/series/nursing/care2/" rel="noopener">掲載ページ ↗</a></span><span class="sr">媒体：Webメディア「こここ」連載／内容：メインビジュアル</span></figcaption></figure><figure class="wcard" id="w-kokoko-care-comic" data-k="work">
 <a class="thumb" href="images/kokoko-care-comic.webp" data-i="32"><img style="object-position:50% 40%" src="images/t/kokoko-care-comic.webp" alt="「ケア」を感じたマンガを教えてください。組織開発コンサルタント、俳優、福祉施設所長、介護福祉士の選ぶ4作品（株式会社マガジンハウス）。黄色い枠のマンガのコマが壁のように並ぶ中、眼鏡の人物が、コマの中の白いおばけのようなキャラクターと見つめ合う絵。" width="1280" height="781" loading="lazy" decoding="async"></a>
-<figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">「ケア」を感じた漫画を教えて下さい</span><span class="c">株式会社マガジンハウス</span><span class="d">Webメディア「こここ」の特集記事のイラスト。2025年には、下北沢のBONUS TRACKで開かれたイベント「ケアリングノーベンバー2025」で、本屋B&amp;Bのブックフェア「ケアを感じたマンガ」の看板になりました。</span><ul class="uses-tag"><li>WEB記事</li><li>イベント看板</li></ul><span class="m">2024<a class="src" href="https://co-coco.jp/series/nursing/care_comic2/" rel="noopener">掲載ページ ↗</a></span><span class="sr">媒体：Webメディア「こここ」連載「“自分らしく生きる”を支えるしごと」／内容：イラスト／画像2枚</span></figcaption></figure><figure class="wcard" id="w-helico" data-k="work">
+<figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">「ケア」を感じた漫画を教えて下さい</span><span class="c">株式会社マガジンハウス</span><span class="d">Webメディア「こここ」の特集記事のイラスト。2025年には、下北沢のBONUS TRACKで開かれたイベント「ケアリングノーベンバー2025」で、本屋B&amp;Bのブックフェア「ケアを感じたマンガ」の看板になりました。</span><ul class="uses-tag"><li>WEB記事</li><li>イベント看板</li></ul><span class="m">2024<a class="src" href="https://co-coco.jp/series/nursing/care_comic2/" rel="noopener">掲載ページ ↗</a></span><span class="sr">媒体：Webメディア「こここ」連載／内容：イラスト／画像2枚</span></figcaption></figure><figure class="wcard" id="w-helico" data-k="work">
 <a class="thumb" href="images/helico.webp" data-i="6"><img style="object-position:50% 40%" src="images/t/helico.webp" alt="胃腸炎が治ったサインとは？（アイセイ薬局）。胸に手を当てるおさげの女の子と、お腹の中のキャラクター。水色とピンクのやさしい配色。" width="1330" height="1050" loading="eager" decoding="async"></a>
 <figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">胃腸炎が治ったサインとは？</span><span class="c">アイセイ薬局</span><span class="d">あなたの胃もやさし～くなりましょう。</span><ul class="uses-tag"><li>メインビジュアル</li><li>カットイラスト</li><li>WEB記事</li></ul><span class="m">2025</span><span class="sr">媒体：健康情報ウェブ「HELiCO」／内容：メインビジュアル・カットイラスト／画像4枚</span></figcaption></figure><figure class="wcard" id="w-tokyohoki-healthcare" data-k="work">
 <a class="thumb" href="images/tokyohoki-mock01.webp" data-i="7"><img style="object-position:50% 40%" src="images/t/tokyohoki-mock01.webp" alt="冊子『女性のヘルスケア ハテナ？とナルホド！』（株式会社東京法規出版）。ティールの地に、赤い髪の女性の横顔と、暮らしの小物のアイコンを散らした冊子の表紙。" width="1200" height="971" loading="eager" decoding="async"></a>
 <figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">冊子『女性のヘルスケア ハテナ？とナルホド！』</span><span class="c">株式会社東京法規出版</span><span class="d">冊子の表紙および挿絵を描きました。年代別三種類の冊子があります。</span><ul class="uses-tag"><li>表紙</li><li>誌面カット</li><li>冊子</li></ul><span class="m">2023</span><span class="sr">媒体：冊子『女性のヘルスケア ハテナ？とナルホド！』／内容：表紙・誌面カット／画像10枚</span></figcaption></figure><figure class="wcard" id="w-kokoko-nursing-book" data-k="work">
 <a class="thumb" href="images/kokoko-nursing-book.webp" data-i="21"><img style="object-position:50% 40%" src="images/t/kokoko-nursing-book.webp" alt="本から「介護にあるまなざし」に出会う。（株式会社マガジンハウス）。開いた本を持つたくさんの手が、中央の人物を囲む。サーモンピンクと緑の配色。" width="1600" height="1029" loading="lazy" decoding="async"></a>
-<figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">本から「介護にあるまなざし」に出会う。</span><span class="c">株式会社マガジンハウス</span><span class="d">開いた本の中にある物語。それぞれの人生。</span><ul class="uses-tag"><li>イラスト</li><li>WEB記事</li></ul><span class="m">2025<a class="src" href="https://co-coco.jp/series/nursing/nursing_book/" rel="noopener">掲載ページ ↗</a></span><span class="sr">媒体：Webメディア「こここ」連載「“自分らしく生きる”を支えるしごと」／内容：イラスト</span></figcaption></figure></div><h3 class="eyebrow small tiles-h">PERSONAL WORK ／ オリジナル</h3><div class="tiles"><figure class="card" id="w-ginzaloft-10min-poster" data-k="orig" data-tech="">
+<figcaption><span class="lab"><span class="k work">仕事</span></span><span class="t">本から「介護にあるまなざし」に出会う。</span><span class="c">株式会社マガジンハウス</span><span class="d">開いた本の中にある物語。それぞれの人生。</span><ul class="uses-tag"><li>イラスト</li><li>WEB記事</li></ul><span class="m">2025<a class="src" href="https://co-coco.jp/series/nursing/nursing_book/" rel="noopener">掲載ページ ↗</a></span><span class="sr">媒体：Webメディア「こここ」連載／内容：イラスト</span></figcaption></figure></div><h3 class="eyebrow small tiles-h">PERSONAL WORK ／ オリジナル</h3><div class="tiles"><figure class="card" id="w-fv-top" data-k="orig" data-tech="">
+<a class="thumb" href="images/uchu-tv-1.webp" data-i="41"><img style="object-position:50% 50%" src="images/t/uchu-tv-1.webp" alt="宇宙TVステーション。黄色の地に、地球を中心に、マイクを持ったウサギ耳のキャラクターやカメラを構えたウサギ、怪獣やロケットが渦のように飛び交う、ニュースをモチーフにした絵。" width="1434" height="1600" loading="lazy" decoding="async"></a>
+<figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">宇宙TVステーション</span><ul class="uses-tag"><li>Web告知</li><li>タペストリー</li></ul><span class="m">2026</span><span class="sr">ポートフォリオのために描き下ろしたイラスト。宇宙のTVステーションのスタッフの物語です。／画像3枚（1枚目：イラスト、2枚目：設計図、3枚目：タペストリーを設置した例）</span></figcaption></figure><figure class="card" id="w-ginzaloft-10min-poster" data-k="orig" data-tech="">
 <a class="thumb" href="images/ginzaloft-10min-poster.webp" data-i="9"><img style="object-position:50% 40%" src="images/t/ginzaloft-10min-poster.webp" alt="THANK YOU MARKET 2026。赤い枠の中で、プレゼントを持った人々が手を振る、にぎやかな告知イラスト。" width="500" height="610" loading="lazy" decoding="async"></a>
-<figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">THANK YOU MARKET 2026</span><ul class="uses-tag"><li>デジタル</li><li>SNS告知</li></ul><span class="m">SNSの告知イラスト（自主制作）。銀座ロフトと共同投稿・2026</span><span class="sr">媒体：THANK YOU MARKET 2026／内容：SNSの告知イラスト（自主制作）／関連：株式会社ロフト（銀座ロフト）</span></figcaption></figure><figure class="card" id="w-love-and-gacha" data-k="orig" data-tech="">
+<figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">THANK YOU MARKET 2026</span><ul class="uses-tag"><li>デジタル</li><li>Web告知</li></ul><span class="m">Web告知イラスト（自主制作）。銀座ロフトと共同投稿・2026</span><span class="sr">媒体：THANK YOU MARKET 2026／内容：Web告知イラスト（自主制作）／関連：株式会社ロフト（銀座ロフト）</span></figcaption></figure><figure class="card" id="w-love-and-gacha" data-k="orig" data-tech="">
 <a class="thumb" href="images/love-and-gacha-2.webp" data-i="10"><img style="object-position:50% 40%" src="images/t/love-and-gacha-2.webp" alt="ラブ＆ガチャ。ティールとピンクの背景に、頭がカプセルのように開き、中から宇宙のようなガチャの中身があふれ出す人物を描いたSFポスター。" width="1133" height="1600" loading="lazy" decoding="async"></a>
-<figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">ラブ＆ガチャ</span><ul class="uses-tag"><li>ポスター</li><li>展示作品</li></ul><span class="m">LINK LINK POSTERS 2026（デザイナー松村大輔氏とのコラボ）・2026</span><span class="sr">『ラブ＆ガチャ』——令和100年、課金省という架空の省庁が仕掛けた「確定された愛」というSF広報ポスターです。／内容：ポスター／関連：LINK LINK POSTERS 2026（デザイナー松村大輔氏とのコラボ）／画像3枚</span></figcaption></figure><figure class="card" id="w-gacha-baby" data-k="orig" data-tech="">
-<a class="thumb" href="images/gacha-baby-1.webp" data-i="38"><img style="object-position:50% 40%" src="images/t/gacha-baby-1.webp" alt="ガチャベイビー。ボールチェーンのついた丸いアクリルキーホルダーに、カラフルな小さなキャラクターたち。" width="1280" height="1600" loading="lazy" decoding="async"></a>
-<figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">ガチャベイビー</span><ul class="uses-tag"><li>グッズ</li><li>アクキー</li></ul><span class="m">ラブ＆ガチャ 会場限定・2026</span><span class="sr">ラブ＆ガチャ企画にて会場限定で販売したオリジナルアイテム／内容：グッズ（アクリルキーホルダー）／画像5枚</span></figcaption></figure><figure class="card" id="w-govote-poster" data-k="orig" data-tech="">
+<figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">ラブ＆ガチャ</span><ul class="uses-tag"><li>ポスター</li><li>展示作品</li></ul><span class="m">LINK LINK POSTERS 2026（デザイナー松村大輔氏とのコラボ）・2026</span><span class="sr">『ラブ＆ガチャ』——令和100年、課金省という架空の省庁が仕掛けた「確定された愛」というSF広報ポスターです。／内容：ポスター（B1サイズ）／関連：LINK LINK POSTERS 2026（デザイナー松村大輔氏とのコラボ）／画像3枚</span></figcaption></figure><figure class="card" id="w-gacha-baby" data-k="orig" data-tech="">
+<a class="thumb" href="images/gacha-baby-3.webp" data-i="38"><img style="object-position:50% 40%" src="images/t/gacha-baby-3.webp" alt="ガチャベイビー。ボールチェーンのついた丸いアクリルキーホルダーに、カラフルな小さなキャラクターたち。" width="1280" height="1600" loading="lazy" decoding="async"></a>
+<figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">ガチャベイビー</span><ul class="uses-tag"><li>グッズ</li><li>アクキー</li></ul><span class="m">ラブ＆ガチャ 会場限定・2026</span><span class="sr">ラブ＆ガチャ企画にて会場限定で販売したオリジナルアイテム／内容：グッズ（アクリルキーホルダー）／画像6枚</span></figcaption></figure><figure class="card" id="w-govote-poster" data-k="orig" data-tech="">
 <a class="thumb" href="images/senkyo-1.webp" data-i="23"><img style="object-position:50% 40%" src="images/t/senkyo-1.webp" alt="選挙行こうよ！ポスター。黄色とピンクの背景に、両手をついて声を上げる女性と投票箱。「キミの声で、明日を選べ」の文字。" width="1280" height="1600" loading="lazy" decoding="async"></a>
 <figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">選挙行こうよ！ポスター</span><ul class="uses-tag"><li>デジタル</li><li>時事</li></ul><span class="m">2026</span><span class="sr">内容：ポスター（自主制作）</span></figcaption></figure><figure class="card" id="w-govote-manga" data-k="orig" data-tech="">
 <a class="thumb" href="images/senkyo-2.webp" data-i="24"><img style="object-position:50% 20%" src="images/t/senkyo-2.webp" alt="友達に投票先を聞いた日（3ページの漫画）。回転寿司の店で、友人たちが選挙について話す白黒の漫画（3ページ）。" width="1280" height="1600" loading="lazy" decoding="async"></a>
 <figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">友達に投票先を聞いた日</span><ul class="uses-tag"><li>漫画</li><li>時事</li></ul><span class="m">漫画・3ページ・2026</span><span class="sr">選挙に限らず、人の数だけ人生にはいろんな選択肢があるって状態が私は好きで、こういう話をさせてくれる友達に改めて感謝する寿司屋での1日でした。／内容：漫画（自主制作・3ページ）／画像3枚</span></figcaption></figure><figure class="card" id="w-i-love-wbc" data-k="orig" data-tech="">
 <a class="thumb" href="images/wbc-1.webp" data-i="37"><img style="object-position:50% 40%" src="images/t/wbc-1.webp" alt="I♡WBC。赤と青の地に、JAPANのユニフォームの選手たちを重ねて描いた絵。" width="1280" height="1600" loading="lazy" decoding="async"></a>
-<figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">I♡WBC</span><ul class="uses-tag"><li>デジタル</li><li>時事</li></ul><span class="m">2026</span><span class="sr">内容：デジタル（時事）／画像2枚</span></figcaption></figure><figure class="card" id="w-ikanaide" data-k="orig" data-tech="">
+<figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">I♡WBC</span><ul class="uses-tag"><li>デジタル</li><li>時事</li></ul><span class="m">2026</span><span class="sr">内容：デジタル（時事）／画像2枚</span></figcaption></figure><figure class="card" id="w-ryushutsu" data-k="orig" data-tech="">
+<a class="thumb" href="images/ryushutsu.webp" data-i="42"><img style="object-position:50% 40%" src="images/t/ryushutsu.webp" alt="流出。緑の地に、パターンロックのスマートフォンの画面から、ピンクの人物が白い髪の人物の顔を両手で包みこむように抱き寄せる絵。右上に縦書きで「流出」の文字と詩。" width="1209" height="1600" loading="lazy" decoding="async"></a>
+<figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">流出</span><ul class="uses-tag"><li>デジタル</li><li>時事</li></ul><span class="m">2026</span><span class="sr">隠したつもりのこの暗号（きもち）　鍵をかけても意味ないね　中身は君のことばかりなのに／内容：デジタル（時事）</span></figcaption></figure><figure class="card" id="w-ikanaide" data-k="orig" data-tech="">
 <a class="thumb" href="images/ikanaide.webp" data-i="34"><img style="object-position:50% 40%" src="images/t/ikanaide.webp" alt="いかないで。ベージュの地に、手を伸ばす水色の人物と、スーツケースを引いて去っていくパンダ。" width="960" height="1250" loading="lazy" decoding="async"></a>
 <figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">いかないで</span><ul class="uses-tag"><li>デジタル</li><li>時事</li></ul><span class="m">2026</span><span class="sr">行かないで。止まってもくれないの。生まれた時から見ていた、白黒のあの子。／内容：デジタル（風刺）</span></figcaption></figure><figure class="card" id="w-nobinobi" data-k="orig" data-tech="">
 <a class="thumb" href="images/nobinobi.webp" data-i="40"><img style="object-position:50% 40%" src="images/t/nobinobi.webp" alt="のびのびパジャマ。赤い地に、水色のパジャマを着てのびをする人物と「のびのび」の文字。" width="1138" height="1600" loading="lazy" decoding="async"></a>
 <figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">のびのびパジャマ</span><ul class="uses-tag"><li>デジタル</li></ul><span class="m">2026</span><span class="sr">内容：デジタル</span></figcaption></figure><figure class="card" id="w-filter" data-k="orig" data-tech="">
 <a class="thumb" href="images/filter-1.webp" data-i="12"><img style="object-position:50% 40%" src="images/t/filter-1.webp" alt="フィルター。緑の地に、黒いスーツの男性とピンクの肌の女性が向き合う切り貼りの絵。余白に縦書きの文章。" width="1280" height="1600" loading="lazy" decoding="async"></a>
-<figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">フィルター</span><ul class="uses-tag"><li>アナログ</li><li>切り貼り</li><li>展示作品</li></ul><span class="m">2026</span><span class="sr">「綺麗じゃない空気の方が生きやしやすい日は　君の正しい呼吸を少しだけ焦がしてみたい。」実際に絵の一部を燃やしています。／内容：アナログ（切り貼り）／画像3枚</span></figcaption></figure><figure class="card" id="w-pickup" data-k="orig" data-tech="">
+<figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">フィルター</span><ul class="uses-tag"><li>アナログ</li><li>切り貼り</li><li>展示作品</li></ul><span class="m">2026</span><span class="sr">「綺麗じゃない空気の方が生きやすい日は　君の正しい呼吸を少しだけ焦がしてみたい。」実際に絵の一部を燃やしています。／内容：アナログ（切り貼り）／画像3枚</span></figcaption></figure><figure class="card" id="w-pickup" data-k="orig" data-tech="">
 <a class="thumb" href="images/pickup-1.webp" data-i="13"><img style="object-position:50% 40%" src="images/t/pickup-1.webp" alt="ピックアップ。紺色の地に、ピンクの男性たちの手と、黄色やオレンジの人物を切り貼りで重ねた絵。" width="1131" height="1600" loading="lazy" decoding="async"></a>
 <figcaption><span class="lab"><span class="k orig">オリジナル</span></span><span class="t">ピックアップ</span><ul class="uses-tag"><li>アナログ</li><li>切り貼り</li><li>展示作品</li></ul><span class="m">2026</span><span class="sr">「男たちの無責任な自由が愛おしくて　ただ羨ましい」／内容：アナログ（切り貼り）／画像4枚</span></figcaption></figure><figure class="card" id="w-piercing" data-k="orig" data-tech="">
 <a class="thumb" href="images/piercing-1.webp" data-i="33"><img style="object-position:50% 40%" src="images/t/piercing-1.webp" alt="あたしはピアスをあけてない。茶色とグレーの地に、白い髪の女性とグレーの髪の女性を切り貼りで描いた絵。" width="1131" height="1600" loading="lazy" decoding="async"></a>
@@ -1979,7 +2071,7 @@ main>section#works{padding-top:72px}
 <a class="thumb" href="images/hanritsu-window.webp" data-i="17"><img style="object-position:50% 40%" src="images/t/hanritsu-window.webp" alt="ミチタリタイム。青と緑を基調にした街並みと人物を、色紙を重ねて立体的に表した半立体作品。" width="650" height="905" loading="lazy" decoding="async"></a>
 <figcaption><span class="lab"><span class="k orig">オリジナル</span><span class="tech">半立体</span></span><span class="t">ミチタリタイム</span><ul class="uses-tag"><li>半立体</li><li>アナログ</li></ul><span class="m">2025</span><span class="sr">窓から見えるのはもう一つの世界。／内容：色紙・スチレンボード</span></figcaption></figure><figure class="card wide" id="w-hanritsu-detail" data-k="orig" data-tech="半立体">
 <a class="thumb" href="images/hanritsu-detail.webp" data-i="15"><img style="object-position:50% 40%" src="images/t/hanritsu-detail.webp" alt="ガサゴソホテル。斜めに重なる色紙のパーツが、物理的な厚みと影をつくる半立体作品。" width="1395" height="975" loading="lazy" decoding="async"></a>
-<figcaption><span class="lab"><span class="k orig">オリジナル</span><span class="tech">半立体</span></span><span class="t">ガサゴソホテル</span><ul class="uses-tag"><li>半立体</li><li>アナログ</li></ul><span class="m">2025</span><span class="sr">明日はどこに行こうか。なんて話してたらみんな寝ちゃった。ザ・チョイス受賞作の一つ／内容：色紙・スチレンボード</span></figcaption></figure><figure class="card" id="w-hanritsu-office" data-k="orig" data-tech="半立体">
+<figcaption><span class="lab"><span class="k orig">オリジナル</span><span class="tech">半立体</span></span><span class="t">ガサゴソホテル</span><ul class="uses-tag"><li>半立体</li><li>アナログ</li></ul><span class="m">第43回 ザ・チョイス年度賞 受賞作・2025</span><span class="sr">明日はどこに行こうか。なんて話してたらみんな寝ちゃった。ザ・チョイス受賞作の一つ／内容：色紙・スチレンボード</span></figcaption></figure><figure class="card" id="w-hanritsu-office" data-k="orig" data-tech="半立体">
 <a class="thumb" href="images/hanritsu-office.webp" data-i="19"><img style="object-position:50% 40%" src="images/t/hanritsu-office.webp" alt="GAME OVER?。青と黄色のオフィスで机に向かう人物を、色紙の段差で表した半立体作品。" width="650" height="900" loading="lazy" decoding="async"></a>
 <figcaption><span class="lab"><span class="k orig">オリジナル</span><span class="tech">半立体</span></span><span class="t">GAME OVER?</span><ul class="uses-tag"><li>半立体</li><li>アナログ</li></ul><span class="m">2025</span><span class="sr">深夜のゲームセンターは自分と遊ぶためにあるのだ。／内容：色紙・スチレンボード</span></figcaption></figure><figure class="card" id="w-hanritsu-airport" data-k="orig" data-tech="半立体">
 <a class="thumb" href="images/hanritsu-airport.webp" data-i="20"><img style="object-position:50% 40%" src="images/t/hanritsu-airport.webp" alt="トラブルなトラベル。オレンジと青の大きな窓の前に旅行者たちが集まる、空港をモチーフにした半立体作品。ザ・チョイス受賞作の一つで、ROOTOTEのトートバッグになった。" width="625" height="880" loading="lazy" decoding="async"></a>
@@ -2024,7 +2116,7 @@ main>section#works{padding-top:72px}
 <div class="mailline"><a class="mail" id="mail" href="mailto:miaco.oh@gmail.com">miaco.oh@gmail.com</a>
 <button class="iconbtn" type="button" id="copy" aria-label="メールアドレスをコピー"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button></div>
 <ul class="items"><li>使用媒体・使用範囲・サイズ・点数</li><li>タッチやイメージ</li><li>希望納期・ご予算</li></ul></div>
-<a class="btn ghost" href="miaco_portfolio_2026.pdf" download data-count="portfolio-pdf">ポートフォリオPDFをダウンロード（全16ページ・約4.5MB）</a>
+<a class="btn ghost" href="miaco_portfolio_2026.pdf" download data-count="portfolio-pdf">ポートフォリオPDFをダウンロード（16P・約4.5MB）</a>
 </div>
 </div></section>
 
@@ -2032,7 +2124,7 @@ main>section#works{padding-top:72px}
 <div class="h"><h2>NEWS</h2><span>お知らせ</span></div>
 <ul class="list"><li><time datetime="2026-11">2026.11</time><span>11/26発売の『ILLUSTRATION 2027』（翔泳社）に掲載されます。</span></li><li><time datetime="2026-11">2026.11</time><span>11/14–15 デザインフェスタvol.64に出展、「10分人物画」を開催します。事前予約受付中。</span></li><li><time datetime="2026-10">2026.10</time><span>Gallery DAZZLE「LINK LINK POSTERS 2026」にて、デザイナー松村大輔氏とのコラボポスター『ラブ＆ガチャ』を展示しました。</span></li><li><time datetime="2026-09">2026.09</time><span>『ファッションイラストレーション・ファイル2026』（玄光社）に掲載されました。</span></li><li><time datetime="2026-06">2026.06</time><span>フェアリックガトー様のコンセプトBOOK『妖精のお菓子屋さん』のイラスト・デザイン・編集を担当しました。</span></li><li><time datetime="2026-06">2026.06</time><span>6/17–19 クリエイターEXPO（東京ビッグサイト「コンテンツ東京2026」内）に出展しました。</span></li><li><time datetime="2026-05">2026.05</time><span>SHARP スマートフォンAQUOSの公式アプリ「My AQUOS」でクリエイター壁紙が配信されました。</span></li><li><time datetime="2026-04">2026.04</time><span>第43回 ザ・チョイス年度賞を受賞しました。『illustration』No.250に掲載されています。</span></li><li><time datetime="2026-03">2026.03</time><span>東京ドームシティ「春やすみ2026」のイベントビジュアルを担当しました。</span></li><li><time datetime="2026-01">2026.01</time><span>銀座ロフトでオリジナルグッズの限定販売と「10分人物画」イベント（1/31–2/1）を行いました。</span></li></ul>
 <div class="cols">
-<div><h3 class="sub"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M7 16l3.5-4 2.5 3 2-2 2 3"/><circle cx="9" cy="8.5" r="1.3"/></svg>EXHIBITIONS</h3><ul class="list"><li><time>2026.09.29–10.04</time><span><span class="kind">企画展</span>LINK LINK POSTERS 2026<span class="v">Gallery DAZZLE（東京・南青山）</span></span></li><li><time>2026.06.05–07, 06.12–14</time><span><span class="kind">企画展</span>イラストレーター4人の絵しりとり展<span class="v">gallery装丁夜話（東京・原宿）</span></span></li><li><time>2026.01.08–18</time><span><span class="kind">企画展</span><span class="v">MOUNT tokyo（東京・駒沢）</span></span></li><li><time>2025.11.22–28</time><span><span class="kind">企画展</span><span class="v">between gallery（東京・吉祥寺）</span></span></li><li><time>2025.10.21–26</time><span><span class="kind solo">個展</span>MADE IN ME, UP to U<span class="v">Gallery DAZZLE（東京・南青山）</span></span></li><li><time>2025.08.27–30</time><span><span class="kind">企画展</span>CROSS OVER<span class="v">香港</span></span></li><li><time>2025.03.24–04.04</time><span><span class="kind solo">個展</span><span class="v">gallery POINT（韓国・ソウル）</span></span></li><li><time>2024.11.11–24</time><span><span class="kind">企画展</span><span class="v">SUP STAND FUKUOKA（福岡）</span></span></li><li><time>2024.08.24–30</time><span><span class="kind">企画展</span><span class="v">between gallery（東京・吉祥寺）</span></span></li><li><time>2024.08.07–17</time><span><span class="kind">企画展</span>ROOM#7<span class="v">MOUNT tokyo（東京・駒沢）</span></span></li></ul></div>
+<div><h3 class="sub"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M7 16l3.5-4 2.5 3 2-2 2 3"/><circle cx="9" cy="8.5" r="1.3"/></svg>EXHIBITIONS</h3><ul class="list"><li><time>2026.09.29–10.04</time><span><span class="kind">企画展</span>LINK LINK POSTERS 2026<span class="v">Gallery DAZZLE（東京・南青山）</span></span></li><li><time>2026.06.05–07, 06.12–14</time><span><span class="kind">企画展</span>イラストレーター4人の絵しりとり展<span class="v">gallery装丁夜話（東京・原宿）</span></span></li><li><time>2026.01.08–18</time><span><span class="kind">企画展</span><span class="v">MOUNT tokyo（東京・駒沢）</span></span></li><li><time>2025.11.22–28</time><span><span class="kind">企画展</span>daily<span class="v">between gallery（東京・吉祥寺）</span></span></li><li><time>2025.10.21–26</time><span><span class="kind solo">個展</span><a href="https://gallery-dazzle.com/exhibitions/%e3%83%9f%e3%82%a2%e3%82%b3%e5%80%8b%e5%b1%95%e3%80%8cmade-in-me-up-to-u%e3%80%8d/" rel="noopener">MADE IN ME, UP to U</a><span class="v">Gallery DAZZLE（東京・南青山）</span></span></li><li><time>2025.08.27–30</time><span><span class="kind">企画展</span>CROSS OVER<span class="v">香港</span></span></li><li><time>2025.03.24–04.04</time><span><span class="kind solo">初個展</span><span class="v">gallery POINT（韓国・ソウル）</span></span></li><li><time>2024.11.11–24</time><span><span class="kind">企画展</span><span class="v">SUP STAND FUKUOKA（福岡）</span></span></li><li><time>2024.08.24–30</time><span><span class="kind">企画展</span><span class="v">between gallery（東京・吉祥寺）</span></span></li><li><time>2024.08.07–17</time><span><span class="kind">企画展</span>ROOM#7<span class="v">MOUNT tokyo（東京・駒沢）</span></span></li></ul></div>
 <div><h3 class="sub"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>EVENTS</h3><ul class="list"><li><time>2026.11.14–15</time><span>デザインフェスタvol.64（東京）出展・「10分人物画」</span></li><li><time>2026.06.17–19</time><span>クリエイターEXPO（東京ビッグサイト）出展</span></li><li><time>2026.05</time><span>デザインフェスタvol.63（東京）</span></li><li><time>2026.01.31–02.01</time><span>銀座ロフト イベント・グッズ販売（東京）</span></li><li><time>2025.02.01–02</time><span>銀座ロフト イベント（東京）</span></li><li><time>2025.01.11–13</time><span>デザインフェスタgallery（東京・原宿）<a class="src" href="https://designfestagallery.com/10%e5%88%86%e4%ba%ba%e7%89%a9%e7%94%bb-%e3%83%9f%e3%82%a2%e3%82%b3%ef%bc%86%e3%82%ab%e3%83%9f%e3%83%a5%e3%83%bc%e3%83%ab/" rel="noopener">展示レポート ↗</a></span></li><li><time>2024.11</time><span>デザインフェスタ（東京）</span></li><li><time>2024.05.26</time><span>Spiral vol.3（静岡・浜松）</span></li><li><time>2024.05.17–18</time><span>デザインフェスタ（東京）</span></li></ul></div>
 </div>
 </div></section>
@@ -2057,7 +2149,7 @@ main>section#works{padding-top:72px}
 <div class="lb-cap"></div><div class="lb-thumbs" hidden></div>
 </div><button class="lb-x" type="button" aria-label="閉じる">×</button><button class="lb-out prev" type="button" aria-label="前の作品" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="lb-out next" type="button" aria-label="次の作品" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></dialog>
 
-<script>const W=[{"id": "feerique-gateau-book", "img": "images/feerique-gateau-book-2.webp", "t": "コンセプトBOOK『妖精のお菓子屋さん フェアリックガトーの小さな物語』", "alt": "見開きのページを、時計やティーポット、色とりどりのお菓子と花が輪のように縁取る。淡い緑を地にした、やわらかな色合い。", "c": "フェアリックガトー（feerique gateau）", "x": "", "m": "コンセプトBOOK（ZINE・全8P）", "r": "イラスト・デザイン・編集（ストーリー以外）", "y": 2026, "d": "時計ブランドフェアリックガトーの、妖精の物語", "u": ""}, {"id": "tokyodome-haruyasumi-2026", "img": "images/tokyodome-haruyasumi-2026.webp", "t": "東京ドームシティの春やすみ2026", "alt": "「春」の大きな文字を中心に、観覧車やジェットコースター、ギターを持つ人物などをピンクと水色でにぎやかに配置したキービジュアル。", "c": "株式会社東京ドーム（東京ドームシティ）", "x": "", "m": "イベント「東京ドームシティの春やすみ2026」", "r": "メインビジュアル・タイトルロゴ／サイネージ・WEB広告・SNSで展開", "y": 2026, "d": "春休みに合わせたイベント。親子も友達もたくさんの愛でドームを包みました。", "u": ""}, {"id": "sharp-aquos", "img": "images/sharp-aquos-2.webp", "t": "スマートフォン「AQUOS」クリエイター壁紙", "alt": "青い背景に、スマートフォンの画面の中でピンクの人物たちが黄色と水色の模様と重なる壁紙イラスト。「SHARP my AQUOS」「MIACO」の文字。", "c": "シャープ株式会社", "x": "", "m": "公式アプリ「My AQUOS」クリエイター壁紙", "r": "壁紙イラスト", "y": 2026, "d": "ミアコのイラストがSHARP製スマートフォン向け公式アプリ「My AQUOS」で「クリエイター壁紙」になりました。日本およびアジア圏のユーザに向けて、日本のクリエイターとして配信されました。", "u": ""}, {"id": "kokoko-manabi-1", "img": "images/kokoko-manabi-1.webp", "t": "「学びの場」をテーマにした連載記事メインビジュアル（前編）", "alt": "水色の模様に囲まれた白い雲の中で、青い髪の人物が本を読み、オレンジの蝶が舞う。", "c": "株式会社マガジンハウス", "x": "", "m": "Webメディア「こここ」連載「こここスタディ」", "r": "メインビジュアル", "y": 2026, "d": "学びとは冒険である。多少の危険のなかで見つけるものが宝物だったり。そんなテーマで書きました", "u": "https://co-coco.jp/series/study/saferspacetolearn/"}, {"id": "kokoko-manabi-2", "img": "images/kokoko-manabi-2.webp", "t": "「学びの場」をテーマにした連載記事メインビジュアル（後編）", "alt": "サーモンピンクの地に、白い雲の中で本や地図を広げる人物たちを描く。", "c": "株式会社マガジンハウス", "x": "", "m": "Webメディア「こここ」連載「こここスタディ」", "r": "メインビジュアル", "y": 2026, "d": "学びとは冒険である。そして仲間が増えていきます。そんなテーマです。", "u": "https://co-coco.jp/series/study/saferspacetolearn02/"}, {"id": "kokoko-care", "img": "images/kokoko-care.webp", "t": "「暮らしの中のケア」をテーマにした企画メインビジュアル", "alt": "本棚のある部屋で、大人と子どもが手を伸ばし合う。赤と黄色を中心にした温かい色合い。", "c": "株式会社マガジンハウス", "x": "", "m": "Webメディア「こここ」連載「“自分らしく生きる”を支えるしごと」（厚生労働省補助事業）", "r": "メインビジュアル", "y": 2025, "d": "暮らしはらせん状につながりながら変化していくものです。", "u": "https://co-coco.jp/series/nursing/care2/"}, {"id": "helico", "img": "images/helico.webp", "t": "胃腸炎が治ったサインとは？", "alt": "胸に手を当てるおさげの女の子と、お腹の中のキャラクター。水色とピンクのやさしい配色。", "c": "アイセイ薬局", "x": "", "m": "健康情報ウェブ「HELiCO」", "r": "メインビジュアル・カットイラスト", "y": 2025, "d": "あなたの胃もやさし～くなりましょう。", "u": "", "g": ["images/helico.webp", "images/helico-cut1.webp", "images/helico-cut2.webp", "images/helico-cut3.webp"]}, {"id": "tokyohoki-healthcare", "img": "images/tokyohoki-mock01.webp", "t": "冊子『女性のヘルスケア ハテナ？とナルホド！』", "alt": "ティールの地に、赤い髪の女性の横顔と、暮らしの小物のアイコンを散らした冊子の表紙。", "c": "株式会社東京法規出版", "x": "", "m": "冊子『女性のヘルスケア ハテナ？とナルホド！』", "r": "表紙・誌面カット", "y": 2023, "d": "冊子の表紙および挿絵を描きました。年代別三種類の冊子があります。", "u": "", "g": ["images/tokyohoki-mock01.webp", "images/tokyohoki-2.webp", "images/tokyohoki-3.webp", "images/tokyohoki-4.webp", "images/tokyohoki-page1.webp", "images/tokyohoki-page2.webp", "images/tokyohoki-cut1.webp", "images/tokyohoki-cut2.webp", "images/tokyohoki-cut3.webp", "images/tokyohoki-cut4.webp"]}, {"id": "ginzaloft-event", "img": "images/ginzaloft-event.webp", "t": "GINZA LOFT × MIACO「10分人物画」イベント", "alt": "「GINZA LOFT」の旗を持った人々が手を振り、紙吹雪が舞う告知ビジュアル。", "c": "株式会社ロフト（銀座ロフト）", "x": "", "m": "GINZA LOFT × MIACO イベント", "r": "告知ビジュアル・店内サイネージ", "y": 2026, "d": "「GINZA LOFT」のバレンタインに合わせたセンキューマーケットにあわせたイベント告知絵です。", "u": ""}, {"id": "ginzaloft-10min-poster", "img": "images/ginzaloft-10min-poster.webp", "t": "THANK YOU MARKET 2026", "alt": "赤い枠の中で、プレゼントを持った人々が手を振る、にぎやかな告知イラスト。", "c": "", "x": "株式会社ロフト（銀座ロフト）", "m": "THANK YOU MARKET 2026", "r": "SNSの告知イラスト（自主制作）", "y": 2026, "d": "", "u": ""}, {"id": "love-and-gacha", "img": "images/love-and-gacha-2.webp", "t": "ラブ＆ガチャ", "alt": "ティールとピンクの背景に、頭がカプセルのように開き、中から宇宙のようなガチャの中身があふれ出す人物を描いたSFポスター。", "c": "", "x": "LINK LINK POSTERS 2026（デザイナー松村大輔氏とのコラボ）", "m": "", "r": "ポスター", "y": 2026, "d": "『ラブ＆ガチャ』——令和100年、課金省という架空の省庁が仕掛けた「確定された愛」というSF広報ポスターです。", "u": "", "g": ["images/love-and-gacha-2.webp", "images/love-and-gacha-3.webp", "images/love-and-gacha-4.webp"]}, {"id": "tamariba-remember", "img": "images/tamariba-1.webp", "t": "たまりば・リメンバー", "alt": "黄緑の地に、ピンクや緑の人物たちがひしめき合う、あの頃をテーマにした絵。", "c": "", "x": "", "m": "", "r": "アナログ・デジタル／A4（あの頃をテーマにした連作群）", "y": 2026, "d": "あの頃のおれたちが時間制だったなんてしらなかった。", "u": "", "g": ["images/tamariba-1.webp", "images/tamariba-2.webp", "images/tamariba-3.webp", "images/tamariba-4.webp"]}, {"id": "filter", "img": "images/filter-1.webp", "t": "フィルター", "alt": "緑の地に、黒いスーツの男性とピンクの肌の女性が向き合う切り貼りの絵。余白に縦書きの文章。", "c": "", "x": "", "m": "", "r": "アナログ（切り貼り）", "y": 2026, "d": "「綺麗じゃない空気の方が生きやしやすい日は　君の正しい呼吸を少しだけ焦がしてみたい。」実際に絵の一部を燃やしています。", "u": "", "g": ["images/filter-1.webp", "images/filter-2.webp", "images/filter-3.webp"]}, {"id": "pickup", "img": "images/pickup-1.webp", "t": "ピックアップ", "alt": "紺色の地に、ピンクの男性たちの手と、黄色やオレンジの人物を切り貼りで重ねた絵。", "c": "", "x": "", "m": "", "r": "アナログ（切り貼り）", "y": 2026, "d": "「男たちの無責任な自由が愛おしくて　ただ羨ましい」", "u": "", "g": ["images/pickup-1.webp", "images/pickup-2.webp", "images/pickup-3.webp", "images/pickup-4.webp"]}, {"id": "dive", "img": "images/urban-print.webp", "t": "PRINT", "alt": "ピンクの地に、文字や記号に囲まれた黄緑の人物を描いた、版画のような挿画。", "c": "", "x": "", "m": "", "r": "誌面挿画（「アーバン」をテーマにしたサンプル）", "y": 2025, "d": "どんな服を着たっていい。明日を決めるのは私。", "u": ""}, {"id": "hanritsu-detail", "img": "images/hanritsu-detail.webp", "t": "ガサゴソホテル", "alt": "斜めに重なる色紙のパーツが、物理的な厚みと影をつくる半立体作品。", "c": "", "x": "", "m": "", "r": "色紙・スチレンボード", "y": 2025, "d": "明日はどこに行こうか。なんて話してたらみんな寝ちゃった。ザ・チョイス受賞作の一つ", "u": ""}, {"id": "hanritsu-hey-say", "img": "images/hanritsu-hey-say.webp", "t": "HEY ! SAY！", "alt": "黄色と水色の背景に、ピンクの人物たちが跳ねるように重なる。色紙とスチレンボードで厚みを出した半立体作品。", "c": "", "x": "", "m": "", "r": "色紙・スチレンボード・アクリルガッシュ・色鉛筆", "y": 2025, "d": "平成。あの頃の私たちは、もっとガラパゴスだった！", "u": ""}, {"id": "hanritsu-window", "img": "images/hanritsu-window.webp", "t": "ミチタリタイム", "alt": "青と緑を基調にした街並みと人物を、色紙を重ねて立体的に表した半立体作品。", "c": "", "x": "", "m": "", "r": "色紙・スチレンボード", "y": 2025, "d": "窓から見えるのはもう一つの世界。", "u": ""}, {"id": "hanritsu-bird", "img": "images/hanritsu-bird.webp", "t": "カモメとオンナ", "alt": "朱色の背景に、白いワンピースの女性と青いカモメたちが舞う半立体作品。", "c": "", "x": "", "m": "", "r": "色紙・スチレンボード", "y": 2025, "d": "カモメは私。私は空。", "u": ""}, {"id": "hanritsu-office", "img": "images/hanritsu-office.webp", "t": "GAME OVER?", "alt": "青と黄色のオフィスで机に向かう人物を、色紙の段差で表した半立体作品。", "c": "", "x": "", "m": "", "r": "色紙・スチレンボード", "y": 2025, "d": "深夜のゲームセンターは自分と遊ぶためにあるのだ。", "u": ""}, {"id": "hanritsu-airport", "img": "images/hanritsu-airport.webp", "t": "トラブルなトラベル", "alt": "オレンジと青の大きな窓の前に旅行者たちが集まる、空港をモチーフにした半立体作品。ザ・チョイス受賞作の一つで、ROOTOTEのトートバッグになった。", "c": "", "x": "", "m": "", "r": "色紙・スチレンボード", "y": 2025, "d": "空港をモチーフに旅立ち前の一幕。ザ・チョイス受賞作の一つで、ROOTOTEのトートバッグになりました。", "u": ""}, {"id": "kokoko-nursing-book", "img": "images/kokoko-nursing-book.webp", "t": "本から「介護にあるまなざし」に出会う。", "alt": "開いた本を持つたくさんの手が、中央の人物を囲む。サーモンピンクと緑の配色。", "c": "株式会社マガジンハウス", "x": "", "m": "Webメディア「こここ」連載「“自分らしく生きる”を支えるしごと」", "r": "イラスト", "y": 2025, "d": "開いた本の中にある物語。それぞれの人生。", "u": "https://co-coco.jp/series/nursing/nursing_book/"}, {"id": "kokoko-yuiyuda", "img": "images/c-magazin.webp", "t": "急がなければ、生きられないけど 〜効率主義と「余白」のあいだで〜｜油田優衣", "alt": "本を読む赤い髪の女性のまわりに、本やノート、植物が広がる、オレンジと水色のイラスト。", "c": "株式会社マガジンハウス", "x": "", "m": "Webメディア「こここ」エッセイ連載「あらゆるものが、はやすぎる」", "r": "メインビジュアル", "y": 2026, "d": "", "u": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/"}, {"id": "govote-poster", "img": "images/senkyo-1.webp", "t": "選挙行こうよ！ポスター", "alt": "黄色とピンクの背景に、両手をついて声を上げる女性と投票箱。「キミの声で、明日を選べ」の文字。", "c": "", "x": "", "m": "", "r": "ポスター（自主制作）", "y": 2026, "d": "", "u": ""}, {"id": "govote-manga", "img": "images/senkyo-2.webp", "t": "友達に投票先を聞いた日", "alt": "回転寿司の店で、友人たちが選挙について話す白黒の漫画。", "c": "", "x": "", "m": "", "r": "漫画（自主制作・3ページ）", "y": 2026, "d": "選挙に限らず、人の数だけ人生にはいろんな選択肢があるって状態が私は好きで、こういう話をさせてくれる友達に改めて感謝する寿司屋での1日でした。", "u": "", "g": ["images/senkyo-2.webp", "images/senkyo-3.webp", "images/senkyo-4.webp"]}, {"id": "ippai-hoshii", "img": "images/ippai-hoshii.webp", "t": "いっぱいほしい！", "alt": "雲のようなクッションに座る女性のまわりに、たくさんの物があふれる絵。", "c": "", "x": "", "m": "", "r": "F15サイズ", "y": 2025, "d": "", "u": ""}, {"id": "motto-motto", "img": "images/motto-motto.webp", "t": "もっともっと！", "alt": "緑のクッションの上で足を組む人物と、まわりにあふれる物を描いた絵。", "c": "", "x": "", "m": "", "r": "F15サイズ", "y": 2025, "d": "", "u": ""}, {"id": "room-palace", "img": "images/room-palace.webp", "t": "ソウゾウのパレス", "alt": "ピンクの部屋で、植物や動物に囲まれてくつろぐ人物たち。", "c": "", "x": "", "m": "", "r": "#ROOM series／太子サイズ・ジークレー（2024 between gallery 展示作品）", "y": 2024, "d": "", "u": ""}, {"id": "room-pilotfish", "img": "images/room-pilotfish.webp", "t": "パイロットフィッシュ", "alt": "丸い水槽の中に、人魚や宇宙服の人物がいる部屋。", "c": "", "x": "", "m": "", "r": "#ROOM series／太子サイズ・ジークレー（2024 between gallery 展示作品）", "y": 2024, "d": "", "u": ""}, {"id": "room-futen", "img": "images/room-futen.webp", "t": "フーテン", "alt": "黄色い部屋や街並みの中で過ごす人々を、俯瞰で描いた絵。", "c": "", "x": "", "m": "", "r": "#ROOM series／太子サイズ・ジークレー（2024 between gallery 展示作品）", "y": 2024, "d": "", "u": ""}, {"id": "room-sumo", "img": "images/room-sumo.webp", "t": "一緒にスモウ", "alt": "土俵のような台の上でくつろぐ人物たちと、にぎやかな観客。", "c": "", "x": "", "m": "", "r": "#ROOM series／太子サイズ・ジークレー（2024 between gallery 展示作品）", "y": 2024, "d": "", "u": ""}, {"id": "movies", "img": "images/movies-2.webp", "t": "＃好きな映画", "alt": "映画をモチーフにした縦長の絵（5点）。", "c": "", "x": "", "m": "", "r": "手拭いサイズ", "y": 2024, "d": "手拭いサイズで作成しました！全部わかったら映画マスター！", "u": "", "g": ["images/movies-2.webp", "images/movies-1.webp", "images/movies-3.webp", "images/movies-4.webp", "images/movies-5.webp"]}, {"id": "kokoko-care-comic", "img": "images/kokoko-care-comic.webp", "t": "「ケア」を感じたマンガを教えてください。組織開発コンサルタント、俳優、福祉施設所長、介護福祉士の選ぶ4作品", "alt": "黄色い枠のマンガのコマが壁のように並ぶ中、眼鏡の人物が、コマの中の白いおばけのようなキャラクターと見つめ合う絵。", "c": "株式会社マガジンハウス", "x": "", "m": "Webメディア「こここ」連載「“自分らしく生きる”を支えるしごと」", "r": "イラスト", "y": 2024, "d": "2025年には、下北沢のBONUS TRACKで開かれたイベント「ケアリングノーベンバー2025」で、本屋B&Bのブックフェア「ケアを感じたマンガ」の看板になりました。", "u": "https://co-coco.jp/series/nursing/care_comic2/", "g": ["images/kokoko-care-comic.webp", "images/hl-kokoko-fair.webp"]}, {"id": "piercing", "img": "images/piercing-1.webp", "t": "あたしはピアスをあけてない", "alt": "茶色とグレーの地に、白い髪の女性とグレーの髪の女性を切り貼りで描いた絵。", "c": "", "x": "", "m": "", "r": "アナログ（切り貼り）", "y": 2026, "d": "古い歌みたいに、わざと置いて行ったの？", "u": "", "g": ["images/piercing-1.webp", "images/piercing-2.webp"]}, {"id": "ikanaide", "img": "images/ikanaide.webp", "t": "いかないで", "alt": "ベージュの地に、手を伸ばす水色の人物と、スーツケースを引いて去っていくパンダ。", "c": "", "x": "", "m": "", "r": "デジタル（風刺）", "y": 2026, "d": "行かないで。止まってもくれないの。生まれた時から見ていた、白黒のあの子。", "u": ""}, {"id": "gokigen", "img": "images/gokigen.webp", "t": "ゴキゲンなゴゴ", "alt": "紫の地に、光の差し込む中で本やノートを広げる人物たちを描いた絵。", "c": "", "x": "", "m": "", "r": "アナログ・デジタル／A4", "y": 2026, "d": "ご機嫌は、私を放課後に連れて行く。", "u": ""}, {"id": "daily-room", "img": "images/daily-1.webp", "t": "THE DAILY ROOM", "alt": "白い壁に、人物画の額や、植物・小物の形に切り抜いた作品を部屋のように並べた展示風景。", "c": "", "x": "", "m": "", "r": "展示（日常をテーマにした作品群）", "y": 2025, "d": "日常をテーマにした展示。2025年 betweenギャラリー企画展「daily」展示風景。", "u": "", "g": ["images/daily-1.webp", "images/daily-2.webp", "images/daily-3.webp", "images/daily-4.webp"]}, {"id": "i-love-wbc", "img": "images/wbc-1.webp", "t": "I♡WBC", "alt": "赤と青の地に、JAPANのユニフォームの選手たちを重ねて描いた絵。", "c": "", "x": "", "m": "", "r": "デジタル（時事）", "y": 2026, "d": "", "u": "", "g": ["images/wbc-1.webp", "images/wbc-2.webp"]}, {"id": "gacha-baby", "img": "images/gacha-baby-1.webp", "t": "ガチャベイビー", "alt": "ボールチェーンのついた丸いアクリルキーホルダーに、カラフルな小さなキャラクターたち。", "c": "", "x": "", "m": "", "r": "グッズ（アクリルキーホルダー）", "y": 2026, "d": "ラブ＆ガチャ企画にて会場限定で販売したオリジナルアイテム", "u": "", "g": ["images/gacha-baby-1.webp", "images/gacha-baby-2.webp", "images/gacha-baby-3.webp", "images/gacha-baby-4.webp", "images/gacha-baby-5.webp"]}, {"id": "imasama", "img": "images/imasama.webp", "t": "イマサマジャンケン", "alt": "赤い立体額縁の中央が鏡になっていて、まわりを黄色や水色の手やお札のモチーフが囲む半立体作品。", "c": "", "x": "", "m": "", "r": "半立体（立体額縁・鏡面）", "y": 2025, "d": "中央が鏡面になっていて、立体額縁にも色を塗りました。", "u": ""}, {"id": "nobinobi", "img": "images/nobinobi.webp", "t": "のびのびパジャマ", "alt": "赤い地に、水色のパジャマを着てのびをする人物と「のびのび」の文字。", "c": "", "x": "", "m": "", "r": "デジタル", "y": 2026, "d": "", "u": ""}];const HL={"tokyodome": {"cap": "東京ドームシティ「春やすみ2026」／株式会社東京ドーム（東京ドームシティ）", "gal": [["images/tokyodome-haruyasumi-2026.webp", "メインビジュアル"], ["images/tokyodome-haru2026-t.webp", "メインビジュアル（縦版）"], ["images/hl-tokyodome-signage-5.webp", "東京ドーム前の大型サイネージ"], ["images/hl-tokyodome-signage-1.webp", "東京ドームシティのサイネージ"], ["images/hl-tokyodome-signage-2.webp", "東京ドームシティのサイネージ"], ["images/hl-tokyodome-signage-3.webp", "東京ドームシティのサイネージ"], ["images/hl-tokyodome-signage-4.webp", "東京ドームシティのサイネージ"], ["images/tokyodome-manga.webp", "東京ドームシティ応援漫画（告知の時に自主制作で描いた1P漫画）"]], "ph": []}, "loft": {"cap": "GINZA LOFT × MIACO（2025・2026）／株式会社ロフト（銀座ロフト）", "gal": [["images/loft-insta-square.webp", "告知ビジュアル"], ["images/hl-loft-poster.webp", "「10分人物画」告知ビジュアル"], ["images/hl-loft-signage.webp", "店内の告知サイネージ"], ["images/hl-loft-live.webp", "「10分人物画」を描いている様子"], ["images/hl-loft-goods.webp", "オリジナルグッズの販売コーナー"], ["images/hl-loft-portrait-1.webp", "「10分人物画」で描いた絵とお客様"], ["images/hl-loft-portrait-3.webp", "「10分人物画」で描いた絵とお客様"], ["images/fashion-portrait.webp", "「10分人物画」で描いたファッション画"]], "ph": []}, "rootote": {"cap": "イラストレーション“ザ・チョイス”× ROOTOTE／ROOTOTE", "gal": [["images/hl-rootote-tote.webp", "入選作のトートバッグ（ROOTOTE）"], ["images/rootote-1.webp", "ROOTOTE GALLERYでのトートバッグの展示"], ["images/rootote-2.webp", "ROOTOTE GALLERYの店内"], ["images/rootote-3.webp", "ROOTOTE GALLERY"], ["images/rootote-illust.webp", "トートバッグを持った女の子のイラスト"]], "ph": []}};const LINES=["いらっしゃいませ〜", "10分ください。描きます", "その服、かわいいですね（見えてないけど）", "令和レトロ、はじめました", "色紙、何枚重ねたと思う？", "下に作品がありますよ ↓", "好きな色、なんですか？", "来てくれて、うれしいです", "今日もおつかれさまです。えらい！", "もう一回押したら…もう一回しゃべります", "AIの学習には使わないでね"];const MAIL="miaco.oh@gmail.com";const PREVIEW=true;
+<script>const W=[{"id": "feerique-gateau-book", "img": "images/feerique-gateau-book-2.webp", "t": "コンセプトBOOK『妖精のお菓子屋さん フェアリックガトーの小さな物語』", "alt": "見開きのページを、時計やティーポット、色とりどりのお菓子と花が輪のように縁取る。淡い緑を地にした、やわらかな色合い。", "c": "フェアリックガトー（feerique gateau）", "x": "", "m": "コンセプトBOOK（ZINE・全8P）", "r": "イラスト・デザイン・編集（ストーリー以外）", "y": 2026, "d": "時計ブランドフェアリックガトーの、妖精の物語", "u": ""}, {"id": "tokyodome-haruyasumi-2026", "img": "images/tokyodome-haruyasumi-2026.webp", "t": "東京ドームシティの春やすみ2026", "alt": "「春」の大きな文字を中心に、観覧車やジェットコースター、ギターを持つ人物などをピンクと水色でにぎやかに配置したキービジュアル。", "c": "株式会社東京ドーム（東京ドームシティ）", "x": "", "m": "イベント「東京ドームシティの春やすみ2026」", "r": "メインビジュアル・タイトルロゴ／サイネージ・WEB広告・SNSで展開", "y": 2026, "d": "春休みに合わせたイベント。親子も友達もたくさんの愛でドームを包みました。", "u": ""}, {"id": "sharp-aquos", "img": "images/sharp-aquos-2.webp", "t": "スマートフォン「AQUOS」クリエイター壁紙", "alt": "青い背景に、スマートフォンの画面の中でピンクの人物たちが黄色と水色の模様と重なる壁紙イラスト。「SHARP my AQUOS」「MIACO」の文字。", "c": "シャープ株式会社", "x": "", "m": "公式アプリ「My AQUOS」クリエイター壁紙", "r": "壁紙イラスト", "y": 2026, "d": "ミアコのイラストがSHARP製スマートフォン向け公式アプリ「My AQUOS」で「クリエイター壁紙」になりました。日本およびアジア圏のユーザに向けて、日本のクリエイターとして配信されました。", "u": ""}, {"id": "kokoko-manabi-1", "img": "images/kokoko-manabi-1.webp", "t": "「学びの場」をテーマにした連載記事メインビジュアル（前編）", "alt": "水色の模様に囲まれた白い雲の中で、青い髪の人物が本を読み、オレンジの蝶が舞う。", "c": "株式会社マガジンハウス", "x": "", "m": "Webメディア「こここ」連載", "r": "メインビジュアル", "y": 2026, "d": "学びとは冒険である。多少の危険のなかで見つけるものが宝物だったり。そんなテーマで書きました", "u": "https://co-coco.jp/series/study/saferspacetolearn/"}, {"id": "kokoko-manabi-2", "img": "images/kokoko-manabi-2.webp", "t": "「学びの場」をテーマにした連載記事メインビジュアル（後編）", "alt": "サーモンピンクの地に、白い雲の中で本や地図を広げる人物たちを描く。", "c": "株式会社マガジンハウス", "x": "", "m": "Webメディア「こここ」連載", "r": "メインビジュアル", "y": 2026, "d": "学びとは冒険である。そして仲間が増えていきます。そんなテーマです。", "u": "https://co-coco.jp/series/study/saferspacetolearn02/"}, {"id": "kokoko-care", "img": "images/kokoko-care.webp", "t": "「暮らしの中のケア」をテーマにした企画メインビジュアル", "alt": "本棚のある部屋で、大人と子どもが手を伸ばし合う。赤と黄色を中心にした温かい色合い。", "c": "株式会社マガジンハウス", "x": "", "m": "Webメディア「こここ」連載", "r": "メインビジュアル", "y": 2025, "d": "暮らしはらせん状につながりながら変化していくものです。", "u": "https://co-coco.jp/series/nursing/care2/"}, {"id": "helico", "img": "images/helico.webp", "t": "胃腸炎が治ったサインとは？", "alt": "胸に手を当てるおさげの女の子と、お腹の中のキャラクター。水色とピンクのやさしい配色。", "c": "アイセイ薬局", "x": "", "m": "健康情報ウェブ「HELiCO」", "r": "メインビジュアル・カットイラスト", "y": 2025, "d": "あなたの胃もやさし～くなりましょう。", "u": "", "g": ["images/helico.webp", "images/helico-cut1.webp", "images/helico-cut2.webp", "images/helico-cut3.webp"]}, {"id": "tokyohoki-healthcare", "img": "images/tokyohoki-mock01.webp", "t": "冊子『女性のヘルスケア ハテナ？とナルホド！』", "alt": "ティールの地に、赤い髪の女性の横顔と、暮らしの小物のアイコンを散らした冊子の表紙。", "c": "株式会社東京法規出版", "x": "", "m": "冊子『女性のヘルスケア ハテナ？とナルホド！』", "r": "表紙・誌面カット", "y": 2023, "d": "冊子の表紙および挿絵を描きました。年代別三種類の冊子があります。", "u": "", "g": ["images/tokyohoki-mock01.webp", "images/tokyohoki-2.webp", "images/tokyohoki-3.webp", "images/tokyohoki-4.webp", "images/tokyohoki-page1.webp", "images/tokyohoki-page2.webp", "images/tokyohoki-cut1.webp", "images/tokyohoki-cut2.webp", "images/tokyohoki-cut3.webp", "images/tokyohoki-cut4.webp"]}, {"id": "ginzaloft-event", "img": "images/ginzaloft-event.webp", "t": "GINZA LOFT × MIACO「10分人物画」イベント", "alt": "「GINZA LOFT」の旗を持った人々が手を振り、紙吹雪が舞う告知ビジュアル。", "c": "株式会社ロフト（銀座ロフト）", "x": "", "m": "GINZA LOFT × MIACO イベント", "r": "告知ビジュアル・店内サイネージ", "y": 2026, "d": "「GINZA LOFT」のバレンタインに合わせたセンキューマーケットにあわせたイベント告知絵です。", "u": ""}, {"id": "ginzaloft-10min-poster", "img": "images/ginzaloft-10min-poster.webp", "t": "THANK YOU MARKET 2026", "alt": "赤い枠の中で、プレゼントを持った人々が手を振る、にぎやかな告知イラスト。", "c": "", "x": "株式会社ロフト（銀座ロフト）", "m": "THANK YOU MARKET 2026", "r": "Web告知イラスト（自主制作）", "y": 2026, "d": "", "u": ""}, {"id": "love-and-gacha", "img": "images/love-and-gacha-2.webp", "t": "ラブ＆ガチャ", "alt": "ティールとピンクの背景に、頭がカプセルのように開き、中から宇宙のようなガチャの中身があふれ出す人物を描いたSFポスター。", "c": "", "x": "LINK LINK POSTERS 2026（デザイナー松村大輔氏とのコラボ）", "m": "", "r": "ポスター（B1サイズ）", "y": 2026, "d": "『ラブ＆ガチャ』——令和100年、課金省という架空の省庁が仕掛けた「確定された愛」というSF広報ポスターです。", "u": "", "g": ["images/love-and-gacha-2.webp", "images/love-and-gacha-plan.webp", "images/love-and-gacha-exhibit.webp"]}, {"id": "tamariba-remember", "img": "images/tamariba-1.webp", "t": "たまりば・リメンバー", "alt": "黄緑の地に、ピンクや緑の人物たちがひしめき合う、あの頃をテーマにした絵。", "c": "", "x": "", "m": "", "r": "アナログ・デジタル／A4（あの頃をテーマにした連作群）", "y": 2026, "d": "あの頃のおれたちが時間制だったなんてしらなかった。", "u": "", "g": ["images/tamariba-1.webp", "images/tamariba-2.webp", "images/tamariba-3.webp", "images/tamariba-4.webp"]}, {"id": "filter", "img": "images/filter-1.webp", "t": "フィルター", "alt": "緑の地に、黒いスーツの男性とピンクの肌の女性が向き合う切り貼りの絵。余白に縦書きの文章。", "c": "", "x": "", "m": "", "r": "アナログ（切り貼り）", "y": 2026, "d": "「綺麗じゃない空気の方が生きやすい日は　君の正しい呼吸を少しだけ焦がしてみたい。」実際に絵の一部を燃やしています。", "u": "", "g": ["images/filter-1.webp", "images/filter-2.webp", "images/filter-3.webp"]}, {"id": "pickup", "img": "images/pickup-1.webp", "t": "ピックアップ", "alt": "紺色の地に、ピンクの男性たちの手と、黄色やオレンジの人物を切り貼りで重ねた絵。", "c": "", "x": "", "m": "", "r": "アナログ（切り貼り）", "y": 2026, "d": "「男たちの無責任な自由が愛おしくて　ただ羨ましい」", "u": "", "g": ["images/pickup-1.webp", "images/pickup-2.webp", "images/pickup-3.webp", "images/pickup-4.webp"]}, {"id": "dive", "img": "images/urban-print.webp", "t": "PRINT", "alt": "ピンクの地に、文字や記号に囲まれた黄緑の人物を描いた、版画のような挿画。", "c": "", "x": "", "m": "", "r": "誌面挿画（「アーバン」をテーマにしたサンプル）", "y": 2025, "d": "どんな服を着たっていい。明日を決めるのは私。", "u": ""}, {"id": "hanritsu-detail", "img": "images/hanritsu-detail.webp", "t": "ガサゴソホテル", "alt": "斜めに重なる色紙のパーツが、物理的な厚みと影をつくる半立体作品。", "c": "", "x": "", "m": "", "r": "色紙・スチレンボード", "y": 2025, "d": "明日はどこに行こうか。なんて話してたらみんな寝ちゃった。ザ・チョイス受賞作の一つ", "u": ""}, {"id": "hanritsu-hey-say", "img": "images/hanritsu-hey-say.webp", "t": "HEY ! SAY！", "alt": "黄色と水色の背景に、ピンクの人物たちが跳ねるように重なる。色紙とスチレンボードで厚みを出した半立体作品。", "c": "", "x": "", "m": "", "r": "色紙・スチレンボード・アクリルガッシュ・色鉛筆", "y": 2025, "d": "平成。あの頃の私たちは、もっとガラパゴスだった！", "u": ""}, {"id": "hanritsu-window", "img": "images/hanritsu-window.webp", "t": "ミチタリタイム", "alt": "青と緑を基調にした街並みと人物を、色紙を重ねて立体的に表した半立体作品。", "c": "", "x": "", "m": "", "r": "色紙・スチレンボード", "y": 2025, "d": "窓から見えるのはもう一つの世界。", "u": ""}, {"id": "hanritsu-bird", "img": "images/hanritsu-bird.webp", "t": "カモメとオンナ", "alt": "朱色の背景に、白いワンピースの女性と青いカモメたちが舞う半立体作品。", "c": "", "x": "", "m": "", "r": "色紙・スチレンボード", "y": 2025, "d": "カモメは私。私は空。", "u": ""}, {"id": "hanritsu-office", "img": "images/hanritsu-office.webp", "t": "GAME OVER?", "alt": "青と黄色のオフィスで机に向かう人物を、色紙の段差で表した半立体作品。", "c": "", "x": "", "m": "", "r": "色紙・スチレンボード", "y": 2025, "d": "深夜のゲームセンターは自分と遊ぶためにあるのだ。", "u": ""}, {"id": "hanritsu-airport", "img": "images/hanritsu-airport.webp", "t": "トラブルなトラベル", "alt": "オレンジと青の大きな窓の前に旅行者たちが集まる、空港をモチーフにした半立体作品。ザ・チョイス受賞作の一つで、ROOTOTEのトートバッグになった。", "c": "", "x": "", "m": "", "r": "色紙・スチレンボード", "y": 2025, "d": "空港をモチーフに旅立ち前の一幕。ザ・チョイス受賞作の一つで、ROOTOTEのトートバッグになりました。", "u": ""}, {"id": "kokoko-nursing-book", "img": "images/kokoko-nursing-book.webp", "t": "本から「介護にあるまなざし」に出会う。", "alt": "開いた本を持つたくさんの手が、中央の人物を囲む。サーモンピンクと緑の配色。", "c": "株式会社マガジンハウス", "x": "", "m": "Webメディア「こここ」連載", "r": "イラスト", "y": 2025, "d": "開いた本の中にある物語。それぞれの人生。", "u": "https://co-coco.jp/series/nursing/nursing_book/"}, {"id": "kokoko-yuiyuda", "img": "images/c-magazin.webp", "t": "急がなければ、生きられないけど 〜効率主義と「余白」のあいだで〜｜油田優衣", "alt": "本を読む赤い髪の女性のまわりに、本やノート、植物が広がる、オレンジと水色のイラスト。", "c": "株式会社マガジンハウス", "x": "", "m": "Webメディア「こここ」連載", "r": "メインビジュアル", "y": 2026, "d": "", "u": "https://co-coco.jp/series/hayasugiruyo/yuiyuda/"}, {"id": "govote-poster", "img": "images/senkyo-1.webp", "t": "選挙行こうよ！ポスター", "alt": "黄色とピンクの背景に、両手をついて声を上げる女性と投票箱。「キミの声で、明日を選べ」の文字。", "c": "", "x": "", "m": "", "r": "ポスター（自主制作）", "y": 2026, "d": "", "u": ""}, {"id": "govote-manga", "img": "images/senkyo-2.webp", "t": "友達に投票先を聞いた日", "alt": "回転寿司の店で、友人たちが選挙について話す白黒の漫画。", "c": "", "x": "", "m": "", "r": "漫画（自主制作・3ページ）", "y": 2026, "d": "選挙に限らず、人の数だけ人生にはいろんな選択肢があるって状態が私は好きで、こういう話をさせてくれる友達に改めて感謝する寿司屋での1日でした。", "u": "", "g": ["images/senkyo-2.webp", "images/senkyo-3.webp", "images/senkyo-4.webp"]}, {"id": "ippai-hoshii", "img": "images/ippai-hoshii.webp", "t": "いっぱいほしい！", "alt": "雲のようなクッションに座る女性のまわりに、たくさんの物があふれる絵。", "c": "", "x": "", "m": "", "r": "F15サイズ", "y": 2025, "d": "", "u": ""}, {"id": "motto-motto", "img": "images/motto-motto.webp", "t": "もっともっと！", "alt": "緑のクッションの上で足を組む人物と、まわりにあふれる物を描いた絵。", "c": "", "x": "", "m": "", "r": "F15サイズ", "y": 2025, "d": "", "u": ""}, {"id": "room-palace", "img": "images/room-palace.webp", "t": "ソウゾウのパレス", "alt": "ピンクの部屋で、植物や動物に囲まれてくつろぐ人物たち。", "c": "", "x": "", "m": "", "r": "#ROOM series／太子サイズ・ジークレー（2024 between gallery 展示作品）", "y": 2024, "d": "", "u": ""}, {"id": "room-pilotfish", "img": "images/room-pilotfish.webp", "t": "パイロットフィッシュ", "alt": "丸い水槽の中に、人魚や宇宙服の人物がいる部屋。", "c": "", "x": "", "m": "", "r": "#ROOM series／太子サイズ・ジークレー（2024 between gallery 展示作品）", "y": 2024, "d": "", "u": ""}, {"id": "room-futen", "img": "images/room-futen.webp", "t": "フーテン", "alt": "黄色い部屋や街並みの中で過ごす人々を、俯瞰で描いた絵。", "c": "", "x": "", "m": "", "r": "#ROOM series／太子サイズ・ジークレー（2024 between gallery 展示作品）", "y": 2024, "d": "", "u": ""}, {"id": "room-sumo", "img": "images/room-sumo.webp", "t": "一緒にスモウ", "alt": "土俵のような台の上でくつろぐ人物たちと、にぎやかな観客。", "c": "", "x": "", "m": "", "r": "#ROOM series／太子サイズ・ジークレー（2024 between gallery 展示作品）", "y": 2024, "d": "", "u": ""}, {"id": "movies", "img": "images/movies-2.webp", "t": "＃好きな映画", "alt": "映画をモチーフにした縦長の絵（5点）。", "c": "", "x": "", "m": "", "r": "手拭いサイズ", "y": 2024, "d": "手拭いサイズで作成しました！全部わかったら映画マスター！", "u": "", "g": ["images/movies-2.webp", "images/movies-1.webp", "images/movies-3.webp", "images/movies-4.webp", "images/movies-5.webp"]}, {"id": "kokoko-care-comic", "img": "images/kokoko-care-comic.webp", "t": "「ケア」を感じたマンガを教えてください。組織開発コンサルタント、俳優、福祉施設所長、介護福祉士の選ぶ4作品", "alt": "黄色い枠のマンガのコマが壁のように並ぶ中、眼鏡の人物が、コマの中の白いおばけのようなキャラクターと見つめ合う絵。", "c": "株式会社マガジンハウス", "x": "", "m": "Webメディア「こここ」連載", "r": "イラスト", "y": 2024, "d": "2025年には、下北沢のBONUS TRACKで開かれたイベント「ケアリングノーベンバー2025」で、本屋B&Bのブックフェア「ケアを感じたマンガ」の看板になりました。", "u": "https://co-coco.jp/series/nursing/care_comic2/", "g": ["images/kokoko-care-comic.webp", "images/hl-kokoko-fair.webp"]}, {"id": "piercing", "img": "images/piercing-1.webp", "t": "あたしはピアスをあけてない", "alt": "茶色とグレーの地に、白い髪の女性とグレーの髪の女性を切り貼りで描いた絵。", "c": "", "x": "", "m": "", "r": "アナログ（切り貼り）", "y": 2026, "d": "古い歌みたいに、わざと置いて行ったの？", "u": "", "g": ["images/piercing-1.webp", "images/piercing-2.webp"]}, {"id": "ikanaide", "img": "images/ikanaide.webp", "t": "いかないで", "alt": "ベージュの地に、手を伸ばす水色の人物と、スーツケースを引いて去っていくパンダ。", "c": "", "x": "", "m": "", "r": "デジタル（風刺）", "y": 2026, "d": "行かないで。止まってもくれないの。生まれた時から見ていた、白黒のあの子。", "u": ""}, {"id": "gokigen", "img": "images/gokigen.webp", "t": "ゴキゲンなゴゴ", "alt": "紫の地に、光の差し込む中で本やノートを広げる人物たちを描いた絵。", "c": "", "x": "", "m": "", "r": "アナログ・デジタル／A4", "y": 2026, "d": "ご機嫌は、私を放課後に連れて行く。", "u": ""}, {"id": "daily-room", "img": "images/daily-1.webp", "t": "THE DAILY ROOM", "alt": "白い壁に、人物画の額や、植物・小物の形に切り抜いた作品を部屋のように並べた展示風景。", "c": "", "x": "", "m": "", "r": "展示（日常をテーマにした作品群）", "y": 2025, "d": "日常をテーマにした展示。2025年 betweenギャラリー企画展「daily」展示風景。", "u": "", "g": ["images/daily-1.webp", "images/daily-2.webp", "images/daily-3.webp", "images/daily-4.webp"]}, {"id": "i-love-wbc", "img": "images/wbc-1.webp", "t": "I♡WBC", "alt": "赤と青の地に、JAPANのユニフォームの選手たちを重ねて描いた絵。", "c": "", "x": "", "m": "", "r": "デジタル（時事）", "y": 2026, "d": "", "u": "", "g": ["images/wbc-1.webp", "images/wbc-2.webp"]}, {"id": "gacha-baby", "img": "images/gacha-baby-3.webp", "t": "ガチャベイビー", "alt": "ボールチェーンのついた丸いアクリルキーホルダーに、カラフルな小さなキャラクターたち。", "c": "", "x": "", "m": "", "r": "グッズ（アクリルキーホルダー）", "y": 2026, "d": "ラブ＆ガチャ企画にて会場限定で販売したオリジナルアイテム", "u": "", "g": ["images/gacha-baby-3.webp", "images/gacha-baby-1.webp", "images/gacha-baby-2.webp", "images/gacha-baby-4.webp", "images/gacha-baby-6.webp", "images/love-and-gacha-4.webp"]}, {"id": "imasama", "img": "images/imasama.webp", "t": "イマサマジャンケン", "alt": "赤い立体額縁の中央が鏡になっていて、まわりを黄色や水色の手やお札のモチーフが囲む半立体作品。", "c": "", "x": "", "m": "", "r": "半立体（立体額縁・鏡面）", "y": 2025, "d": "中央が鏡面になっていて、立体額縁にも色を塗りました。", "u": ""}, {"id": "nobinobi", "img": "images/nobinobi.webp", "t": "のびのびパジャマ", "alt": "赤い地に、水色のパジャマを着てのびをする人物と「のびのび」の文字。", "c": "", "x": "", "m": "", "r": "デジタル", "y": 2026, "d": "", "u": ""}, {"id": "fv-top", "img": "images/uchu-tv-1.webp", "t": "宇宙TVステーション", "alt": "黄色の地に、地球を中心に、マイクを持ったウサギ耳のキャラクターやカメラを構えたウサギ、怪獣やロケットが渦のように飛び交う、ニュースをモチーフにした絵。", "c": "", "x": "", "m": "", "r": "", "y": 2026, "d": "ポートフォリオのために描き下ろしたイラスト。宇宙のTVステーションのスタッフの物語です。", "u": "", "g": ["images/uchu-tv-1.webp", "images/uchu-tv-2.webp", "images/uchu-tv-3.webp"], "gc": ["", "設計図", "タペストリーを設置した例"]}, {"id": "ryushutsu", "img": "images/ryushutsu.webp", "t": "流出", "alt": "緑の地に、パターンロックのスマートフォンの画面から、ピンクの人物が白い髪の人物の顔を両手で包みこむように抱き寄せる絵。右上に縦書きで「流出」の文字と詩。", "c": "", "x": "", "m": "", "r": "デジタル（時事）", "y": 2026, "d": "隠したつもりのこの暗号（きもち）　鍵をかけても意味ないね　中身は君のことばかりなのに", "u": ""}];const HL={"tokyodome": {"cap": "東京ドームシティ「春やすみ2026」／株式会社東京ドーム（東京ドームシティ）", "gal": [["images/tokyodome-haruyasumi-2026.webp", "メインビジュアル"], ["images/tokyodome-haru2026-t.webp", "メインビジュアル（縦版）"], ["images/hl-tokyodome-signage-5.webp", "東京ドーム前の大型サイネージ"], ["images/hl-tokyodome-signage-1.webp", "東京ドームシティのサイネージ"], ["images/hl-tokyodome-signage-2.webp", "東京ドームシティのサイネージ"], ["images/hl-tokyodome-signage-3.webp", "東京ドームシティのサイネージ"], ["images/hl-tokyodome-signage-4.webp", "東京ドームシティのサイネージ"], ["images/tokyodome-manga.webp", "東京ドームシティ応援漫画（告知の時に自主制作で描いた1P漫画）"]], "ph": []}, "loft": {"cap": "GINZA LOFT × MIACO（2025・2026）／株式会社ロフト（銀座ロフト）", "gal": [["images/loft-insta-square.webp", "2026年度の告知ビジュアル"], ["images/hl-loft-poster.webp", "2025年度の「10分人物画」告知ビジュアル"], ["images/hl-loft-signage.webp", "店内の告知サイネージ"], ["images/hl-loft-live.webp", "「10分人物画」を描いている様子"], ["images/hl-loft-goods.webp", "オリジナルグッズの販売コーナー"], ["images/hl-loft-portrait-1.webp", "「10分人物画」で描いた絵とお客様"], ["images/hl-loft-portrait-3.webp", "「10分人物画」で描いた絵とお客様"], ["images/fashion-portrait.webp", "「10分人物画」で描いたファッション画"]], "ph": []}, "rootote": {"cap": "イラストレーション“ザ・チョイス”× ROOTOTE／ROOTOTE", "gal": [["images/hl-rootote-tote.webp", "入選作のトートバッグ（ROOTOTE）"], ["images/rootote-1.webp", "ROOTOTE GALLERY 二子玉川ライズでの販売時の様子"], ["images/rootote-2.webp", "ROOTOTE GALLERYの店内"], ["images/rootote-3.webp", "ROOTOTE GALLERY"], ["images/rootote-illust.webp", "トートバッグを持った女の子のイラスト"]], "ph": []}};const LINES=["いらっしゃいませ〜", "10分ください。描きます", "その服、かわいいですね（見えてないけど）", "令和レトロ、はじめました", "色紙、何枚重ねたと思う？", "下に作品がありますよ ↓", "好きな色、なんですか？", "来てくれて、うれしいです", "今日もおつかれさまです。えらい！", "もう一回押したら…もう一回しゃべります", "AIの学習には使わないでね"];const MAIL="miaco.oh@gmail.com";const PREVIEW=true;
 // JSは「足すだけ」。切っても全文と画像リンクは読める。
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const count=n=>{try{window.goatcounter&&window.goatcounter.count({path:n,title:n,event:true});}catch(e){}};
@@ -2096,7 +2188,7 @@ document.getElementById('grid').addEventListener('click',e=>{const a=e.target.cl
   works=[...document.querySelectorAll('#grid .thumb')];openWork(works.indexOf(a));});
 // 作品１点分の画像（複数枚ある作品はサムネ付きで中の＜＞で送る）
 const gallery=a=>{const gw=W[+a.dataset.i],base=workItem(a);
-  return gw.g?gw.g.map((s,k)=>({src:s,alt:gw.alt||gw.t,cap:base.cap.replace('</small>',`<br>${k+1} / ${gw.g.length}</small>`)})):[base];};
+  return gw.g?gw.g.map((s,k)=>({src:s,alt:(gw.gc&&gw.gc[k])?gw.t+'（'+gw.gc[k]+'）':(gw.alt||gw.t),cap:base.cap.replace('</small>',`<br>${k+1} / ${gw.g.length}${gw.gc&&gw.gc[k]?'　'+esc(gw.gc[k]):''}</small>`)})):[base];};
 function openWork(k){wi=(k+works.length)%works.length;openLb(gallery(works[wi]),0,true);}
 // モーダルの外の＜＞：前後の作品へ
 oPrev.onclick=()=>works&&openWork(wi-1);oNext.onclick=()=>works&&openWork(wi+1);
@@ -2116,7 +2208,7 @@ const badge=document.querySelector('.badge');
 const bub=document.createElement('span');bub.className='bubble';bub.setAttribute('role','status');badge.after(bub);
 let li=-1,bt;
 const say=i=>{li=i;bub.textContent=LINES[li];bub.classList.remove('show');void bub.offsetWidth;bub.classList.add('show');
-  clearTimeout(bt);bt=setTimeout(()=>bub.classList.remove('show'),2800);};
+  clearTimeout(bt);bt=setTimeout(()=>bub.classList.remove('show'),1600);};
 badge.addEventListener('click',()=>{if(!LINES.length)return;say((li+1)%LINES.length);
   badge.classList.remove('pop');void badge.offsetWidth;badge.classList.add('pop');setTimeout(()=>badge.classList.remove('pop'),400);});
 // ホバーしたら１つめのせりふを出す（すでに話しているときはそのまま）
@@ -2131,6 +2223,13 @@ document.querySelectorAll('.uses .ex a[href^="#"]').forEach(a=>a.addEventListene
 document.querySelectorAll('#grid .wcard').forEach(c=>c.addEventListener('click',e=>{
   if(e.target.closest('a'))return;const th=c.querySelector('.thumb');th&&th.click();}));
 
+// MV：キラキラがメインの絵に重ならないように、絵の範囲にかかる星は隠す（画面幅が変わったら数え直す）
+addEventListener('load',()=>{const sp=document.querySelector('.fv-space'),img=document.querySelector('.fv-hero>img');if(!sp||!img)return;
+  // メインの絵に加えて、サル・うさぎ・惑星（表示中のもの）にも重ねない（サルは揺れるので余白を多めに）
+  const fit=()=>{const boxes=[[img.getBoundingClientRect(),10]];sp.querySelectorAll('.mv-char').forEach(c=>{const r=c.getBoundingClientRect();if(r.width)boxes.push([r,c.classList.contains('mv-saru')?24:12]);});
+    sp.querySelectorAll('i').forEach(s=>{s.style.visibility='';const b=s.getBoundingClientRect(),cx=(b.left+b.right)/2,cy=(b.top+b.bottom)/2,h=Math.max(b.width,b.height)/2;
+    s.style.visibility=boxes.some(([r,pad])=>cx+h+pad>r.left&&cx-h-pad<r.right&&cy+h+pad>r.top&&cy-h-pad<r.bottom)?'hidden':'';});};
+  fit();let t;addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(fit,150);});});
 // MV：キラキラを増量（大小の星・光の粒・ときどき流れ星）。飾りなのでJSが切れても影響なし
 (()=>{const sp=document.querySelector('.fv-space');if(!sp)return;const r=(a,b)=>a+Math.random()*(b-a);
   for(let k=0;k<6;k++){const i=document.createElement('i');i.style.cssText=`left:${r(1,96).toFixed(1)}%;top:${r(2,92).toFixed(1)}%;--s:${r(10,36).toFixed(0)}px;--d:${r(0,4).toFixed(2)}s;--t:${r(2.2,4.6).toFixed(2)}s`;sp.append(i);}
@@ -2143,7 +2242,7 @@ document.querySelectorAll('#grid .thumb').forEach(a=>{const w=W[+a.dataset.i];if
 document.querySelectorAll('#grid .tiles .card').forEach(c=>c.addEventListener('click',e=>{if(e.target.closest('a'))return;const th=c.querySelector('.thumb');th&&th.click();}));
 
 // オリジナルのタグ（仮。あとで直す前提）：カードのタイトルの下に、お仕事と同じ丸タグで出す
-const OTAGS={"ginzaloft-10min-poster": ["デジタル", "SNS告知"], "love-and-gacha": ["ポスター", "展示作品"], "gacha-baby": ["グッズ", "アクキー"], "govote-poster": ["デジタル", "時事"], "govote-manga": ["漫画", "時事"], "i-love-wbc": ["デジタル", "時事"], "ikanaide": ["デジタル", "時事"], "nobinobi": ["デジタル"], "filter": ["アナログ", "切り貼り", "展示作品"], "pickup": ["アナログ", "切り貼り", "展示作品"], "piercing": ["アナログ", "切り貼り", "展示作品"], "tamariba-remember": ["アナログ", "展示作品"], "gokigen": ["アナログ", "展示作品"], "daily-room": ["展示作品"], "imasama": ["半立体", "立体額縁", "鏡面"], "hanritsu-hey-say": ["半立体", "アナログ"], "hanritsu-bird": ["半立体", "アナログ"], "hanritsu-window": ["半立体", "アナログ"], "hanritsu-detail": ["半立体", "アナログ"], "hanritsu-office": ["半立体", "アナログ"], "hanritsu-airport": ["半立体", "アナログ"], "ippai-hoshii": ["アナログ", "F15"], "motto-motto": ["アナログ", "F15"], "room-palace": ["ジークレー"], "room-pilotfish": ["ジークレー"], "room-futen": ["ジークレー"], "room-sumo": ["ジークレー"], "movies": ["手拭い", "5点シリーズ"], "dive": ["誌面挿画"]};
+const OTAGS={"ginzaloft-10min-poster": ["デジタル", "Web告知"], "love-and-gacha": ["ポスター", "展示作品"], "gacha-baby": ["グッズ", "アクキー"], "govote-poster": ["デジタル", "時事"], "govote-manga": ["漫画", "時事"], "i-love-wbc": ["デジタル", "時事"], "ikanaide": ["デジタル", "時事"], "nobinobi": ["デジタル"], "filter": ["アナログ", "切り貼り", "展示作品"], "pickup": ["アナログ", "切り貼り", "展示作品"], "piercing": ["アナログ", "切り貼り", "展示作品"], "tamariba-remember": ["アナログ", "展示作品"], "gokigen": ["アナログ", "展示作品"], "daily-room": ["展示作品"], "imasama": ["半立体", "立体額縁", "鏡面"], "hanritsu-hey-say": ["半立体", "アナログ"], "hanritsu-bird": ["半立体", "アナログ"], "hanritsu-window": ["半立体", "アナログ"], "hanritsu-detail": ["半立体", "アナログ"], "hanritsu-office": ["半立体", "アナログ"], "hanritsu-airport": ["半立体", "アナログ"], "ippai-hoshii": ["アナログ", "F15"], "motto-motto": ["アナログ", "F15"], "room-palace": ["ジークレー"], "room-pilotfish": ["ジークレー"], "room-futen": ["ジークレー"], "room-sumo": ["ジークレー"], "movies": ["手拭い", "5点シリーズ"], "dive": ["誌面挿画"], "fv-top": ["Web告知", "タペストリー"], "ryushutsu": ["デジタル", "時事"]};
 document.querySelectorAll('#grid .tiles .card').forEach(c=>{const tg=OTAGS[c.id.replace(/^w-/,'')];if(!tg||c.querySelector('.uses-tag'))return;
   const t=c.querySelector('figcaption .t');if(!t)return;const ul=document.createElement('ul');ul.className='uses-tag';
   ul.innerHTML=tg.map(x=>'<li>'+esc(x)+'</li>').join('');t.after(ul);});
@@ -2163,6 +2262,6 @@ mBtn.addEventListener('click',e=>{e.stopPropagation();setMenu(!hdr.classList.con
 hdr.querySelectorAll('.navs a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
 document.addEventListener('click',e=>{if(hdr.classList.contains('open')&&!hdr.contains(e.target))setMenu(false);});
 addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false);});
-addEventListener('resize',()=>{if(innerWidth>560)setMenu(false);});
+addEventListener('resize',()=>{if(innerWidth>900)setMenu(false);});
 </script>
 </body></html>
