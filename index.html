@@ -16,7 +16,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" href="images/miaco.png">
+<link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png"><link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;800;900&display=swap">
 <style>/* miaco.jp — one page. 構成：header → FV → CLIENTS → (band) → WORKS → AWARD → CONTACT → NEWS → ABOUT → footer
@@ -725,8 +725,8 @@ main>section#works{padding-top:72px}
 /* MV：左右の余白にうさぎと鳥（PCで余白があるときだけ。飾りなので読み上げない） */
 .fv-space .mv-char{display:none;position:absolute;z-index:1;height:auto;pointer-events:none;animation:mvfloat 5s ease-in-out infinite}
 .fv-space .mv-wakusei{left:calc((100% - 720px)/4);top:5%;width:clamp(90px,calc((100vw - 720px)/2 - 150px),140px);transform:translateX(-50%) rotate(-10deg);--r:-10deg;animation-duration:6.5s;animation-delay:-2s}
-.fv-space .mv-usa{left:calc((100% - 720px)/4);top:33%;width:clamp(120px,calc((100vw - 720px)/2 - 100px),180px);transform:translateX(-50%) rotate(-6deg);--r:-6deg}
-.fv-space .mv-saru{right:calc((100% - 720px)/4);top:-2%;width:clamp(64px,calc((100vw - 720px)/2 - 200px),88px);transform:translateX(50%);transform-origin:50% 0;animation:mvswing 4.6s ease-in-out infinite}
+.fv-space .mv-usa{left:calc((100% - 720px)/4);top:33%;width:clamp(132px,calc(((100vw - 720px)/2 - 100px) * 1.1),198px);transform:translateX(-50%) rotate(-6deg);--r:-6deg}
+.fv-space .mv-saru{right:calc((100% - 720px)/4);top:-2%;width:clamp(70px,calc(((100vw - 720px)/2 - 200px) * 1.1),97px);transform:translateX(50%);transform-origin:50% 0;animation:mvswing 4.6s ease-in-out infinite}
 .fv-space .mv-tori{right:calc((100% - 720px)/4);top:54%;width:clamp(100px,calc((100vw - 720px)/2 - 130px),140px);transform:translateX(50%) rotate(4deg);--r:4deg;--tx:50%;animation-duration:4.2s;animation-delay:-1.5s}
 @keyframes mvswing{0%,100%{rotate:-4deg}50%{rotate:4deg}}
 @keyframes mvfloat{0%,100%{translate:0 0}50%{translate:0 -12px}}
